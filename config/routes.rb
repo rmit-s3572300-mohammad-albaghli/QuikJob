@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  
+  root 'static_pages#Home'
   # Routes for regular pages
   get 'jobseekers/new'
   get '/home', to: 'static_pages#Home'

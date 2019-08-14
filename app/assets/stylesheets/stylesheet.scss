@@ -1,4 +1,244 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
-/* Here's where all CSS will be... might expand later though */
+/* mixins, variables, etc. */
+
+$gray-medium-light: #eaeaea;
+
+/* universal */
+
+body {
+  padding-top: 60px;
+}
+
+section {
+  overflow: auto;
+}
+
+textarea {
+  resize: vertical;
+}
+
+.center {
+  text-align: center;
+  h1 {
+    margin-bottom: 10px;
+  }
+}
+
+/* typography */
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1;
+}
+
+h1 {
+  font-size: 3em;
+  letter-spacing: -2px;
+  margin-bottom: 30px;
+  text-align: center;
+}
+
+h2 {
+  font-size: 1.2em;
+  letter-spacing: -1px;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: normal;
+  color: $gray-light;
+}
+
+p {
+  font-size: 1.1em;
+  line-height: 1.7em;
+}
+
+
+/* header */
+
+#logo {
+  float: left;
+  margin-right: 10px;
+  font-size: 1.7em;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  padding-top: 9px;
+  font-weight: bold;
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+}
+
+.navbar {
+  background-color: #5e005e;
+}
+
+.button-img:before {
+  content: "";
+  width: 22px;
+  height: 22px;
+  display: inline-block;
+  margin-right: 8px;
+  vertical-align: text-top;
+  background-color: transparent;
+  background-position : center center;
+  background-repeat:no-repeat;
+}
+
+.courses-button:before {
+  background-image : image-url("checklist.png");
+  background-size: 22px 22px;;
+}
+
+.login-button:before {
+  background-image : image-url("login.png");
+  background-size: 22px 22px;;
+}
+
+.signup-button:before {
+  background-image : image-url("signup.png");
+  background-size: 22px 22px;;
+}
+
+.form-button {
+  width: 100%;
+}
+.home-wrapper {
+  height: 175px;
+}
+
+.home-left {
+  width: 50%;
+  float: left;
+}
+
+.home-right {
+  width: 50%;
+  float: right;
+}
+
+/* forms */
+
+input, textarea, select, .uneditable-input {
+  border: 1px solid #bbb;
+  margin-bottom: 15px;
+}
+
+.input_checkbox input {
+  width: auto !important;
+}
+
+
+#error_explanation {
+  color: red;
+  ul {
+    color: red;
+    margin: 0 0 30px 0;
+  }
+}
+
+.field_with_errors {
+  @extend .has-error;
+  .form-control {
+    color: $state-danger-text;
+  }
+}
+
+.users {
+  list-style: none;
+  margin: 0;
+  text-decoration: none;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    border-bottom: 1px solid $gray-lighter;
+  }
+}
+
+.usersh1 a {
+  color: #333339;
+  text-decoration: none;
+}
+
+section {
+    padding: 10px 0;
+}
+
+section .section-title {
+    text-align: center;
+    color: #007b5e;
+    margin-bottom: 50px;
+    text-transform: uppercase;
+}
+
+#footer {
+  background: #5e005e;
+}
+#footer h4{
+  margin-bottom: 2px;
+  color:#ffffff;
+}
+#footer a {
+  color: #ffffff;
+  text-decoration: none !important;
+  background-color: transparent;
+}
+
+.footerform input {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.footerform input:focus {
+    outline: none;
+}
+
+.footerform textarea {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid #000000;
+  margin-bottom: 5px;
+  color: #ffffff;
+}
+
+.course-wrapper {
+  height: 340px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid $gray-lighter;
+}
+
+.course-wrapper-profile {
+  height: 280px;
+  margin-bottom: 25px;
+  border-bottom: 1px solid $gray-lighter;
+}
+
+.course-left {
+  width: 20%;
+  float: left;
+}
+
+.course-right {
+  width: 80%;
+  float: right;
+}
+
+.courses {
+  list-style: none;
+  margin: 0;
+  text-decoration: none;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+  }
+}
+
+.course-image {
+  width: 80px;
+  height: 80px;
+}
