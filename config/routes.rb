@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  
   # Routes for regular pages
+  get 'jobseekers/new'
   get  '/employer_signup',  to: 'employers#new'
   post '/employer_signup',  to: 'employers#create'
   
