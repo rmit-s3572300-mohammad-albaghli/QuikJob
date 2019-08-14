@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # Routes for regular pages
   get 'jobseekers/new'
+  get '/home', to: 'static_pages#Home'
+  get '/about', to: 'static_pages#About'  
+  get '/contact', to: 'static_pages#Contact'
   get  '/employer_signup',  to: 'employers#new'
   post '/employer_signup',  to: 'employers#create'
   
