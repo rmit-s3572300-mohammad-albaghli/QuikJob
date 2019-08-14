@@ -4,9 +4,9 @@ class JobseekerTest < ActiveSupport::TestCase
   # Jobseeker Validation checks go here
   #Create a default user to test for validation
   def setup
-    @valid_user = Jobseeker.new(name: "Name Surname", email: "name.surname@gmail.com")
-    @invalid_user = Jobseeker.new(name: " ", email: " ")
-    @user = Jobseeker.new(name: "Test", email: "test@example.com")
+    @valid_user = Jobseeker.new(name: "Name Surname", email: "name.surname@gmail.com", password: "password", password_confirmation: "password")
+    @invalid_user = Jobseeker.new(name: " ", email: " ", password: "password", password_confirmation: "password1")
+    @user = Jobseeker.new(name: "Test", email: "test@example.com", password: "password", password_confirmation: "password")
   end
   
   #Test for a valid user
@@ -26,13 +26,6 @@ class JobseekerTest < ActiveSupport::TestCase
       @user.email = valid_email
       assert @user.valid?, "#{valid_email.inspect} should be valid"
     end
-  end
-  
-  #Make sure there are no duplicate emails
-  test "all emails must be unique" do
-    duplicate_user = @user.dup
-    @user.save
-    assert_not duplicate_user.valid?
   end
   
 end
