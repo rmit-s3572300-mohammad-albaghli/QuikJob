@@ -96,7 +96,7 @@ GEM
     minitest (5.11.3)
     multi_json (1.13.1)
     nio4r (2.4.0)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     pg (0.20.0)
     puma (3.9.1)
@@ -118,7 +118,7 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.4)
+    rails-html-sanitizer (1.2.0)
       loofah (~> 2.2, >= 2.2.2)
     railties (5.1.6)
       actionpack (= 5.1.6)
@@ -201,4 +201,4 @@ DEPENDENCIES
   web-console (= 3.5.1)
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
