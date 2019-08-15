@@ -10,9 +10,10 @@
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
+      
+      <%= hidden_field_tag :membertype, @membertype %>
 
       <%= f.submit "Log in", class: "btn btn-primary" %>
     <% end %>
-
   </div>
 </div>

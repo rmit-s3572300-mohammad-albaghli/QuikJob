@@ -6,15 +6,32 @@ class SessionsController < ApplicationController
   
   def create
     if params[:membertype] == "employer" 
-      flash.now[:danger] == "it's sendin the param"
-      render 'new'
-    else
-      flash.now[:danger] == "it's not sending the param we wnated"
+      employer = Employer.find_by(email: params[:session][:email].downcase)
+        if employer && employer.authenticate(params[:session][:password])
+          log_in_employer employer
+          flash[:success] = "You've successfully logged in!"
+          redirect_to :controller => 'static_pages', :action => 'Home'
+        else
+          flash.now[:danger] = 'Invalid email/password combination!'
+          render 'new'
+        end
+    elsif params[:membertype] == "jobseeker"
+    jobseeker = Jobseeker.find_by(email: params[:session][:email].downcase)
+        if jobseeker && jobseeker.authenticate(params[:session][:password])
+          log_in_jobseeker jobseeker 
+          flash[:success] = "You've successfully logged in!"
+          redirect_to :controller => 'static_pages', :action => 'Home'
+        else
+          flash.now[:danger] = 'Invalid email/password combination!'
+          render 'new'
+        end
+    else 
       render 'new'
     end
   end
   
   def destroy
-  
+    log_out
+    redirect_to root_url
   end
 end
