@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'sessions/new'
+
   root 'static_pages#Home'
   # Routes for regular pages
   get 'jobseekers/new'
@@ -8,6 +10,12 @@ Rails.application.routes.draw do
   get '/contact', to: 'static_pages#Contact'
   get  '/employer_signup',  to: 'employers#new'
   post '/employer_signup',  to: 'employers#create'
+  
+  #login routes
+  get '/login', to: 'sessions#new'
+  post '/login', to: 'sessions#create'
+  delete '/logout', to: 'sessions#destroy'
+  
   
   # Routes for error pages
   get '/404', to: "errors#not_found"
