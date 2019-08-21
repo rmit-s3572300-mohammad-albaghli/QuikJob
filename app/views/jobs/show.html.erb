@@ -1,0 +1,12 @@
+<h1>
+  Job's Position: <%= @job.name %>
+</h1>
+<h1>
+  Posted By: <%= link_to Employer.find(@job.employer_id).name, Employer.find(@job.employer_id) %>
+</h1>
+<h1>
+  Information: <%= @job.info %>
+</h1>
+<h1>
+  Requirements: <%= @job.requirements %>
+</h1>
