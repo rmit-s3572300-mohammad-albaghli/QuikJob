@@ -1,4 +1,6 @@
 class Employer < ApplicationRecord
+  # Declare relationship
+  has_many :jobs
   # Employer's infomation - will add accordingly with new data and such if necessary...
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: {minimum: 4, maximum: 60}
