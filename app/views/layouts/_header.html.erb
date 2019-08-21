@@ -12,6 +12,9 @@
             <% end %> 
             <% if logged_in_jobseeker? %>
               <li><%= link_to "Profile", current_jobseeker %></li>
+              <li>
+                <%= link_to "Edit Profile", edit_jobseeker_path(current_jobseeker.id) %>
+              </li>
             <% end %> 
             <% if logged_in_employer? || logged_in_jobseeker? %>
               <li><%= link_to "Logout", logout_path, method: :delete %></li>

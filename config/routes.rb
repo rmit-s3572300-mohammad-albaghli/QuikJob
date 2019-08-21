@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'skills/new'
+
   get 'sessions/new'
 
   root 'static_pages#Home'
@@ -32,5 +34,5 @@ Rails.application.routes.draw do
   get '/500', to: "errors#server_errors"
   
   resources :employers, :jobseekers
-  resources :jobs
+  resources :jobs, :skills
 end

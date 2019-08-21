@@ -1,0 +1,30 @@
+<h1>Edit your profile</h1>
+
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <%= form_for(@jobseeker) do |f| %>
+      <%= render 'shared/jobseeker_error_messages' %>
+    
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+
+      <%= f.label :email %>
+      <%= f.email_field :email %>
+      
+      <%= f.label "Skills:" %>
+      <% Skill.all.each do |skill| %>
+        <%= check_box_tag "skills[]", skill.id, @jobseeker.skill_ids.include?(skill.id) %>
+        <%= skill.name %>
+      <% end %>
+      
+      <br>
+      <%= f.label :password %>
+      <%= f.password_field :password %>
+
+      <%= f.label :password_confirmation, "Confirmation" %>
+      <%= f.password_field :password_confirmation %>
+
+      <%= f.submit "Confirm", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>

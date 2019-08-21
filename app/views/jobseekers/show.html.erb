@@ -1,6 +1,13 @@
-<h1>
+<h1>Welcome to your profile page!</h1>
+<h2>
   Employer: <%= @jobseeker.name %>
   <br>
   Email: <%= @jobseeker.email %>
-</h1>
-<div>Welcome to your profile page!</div>
+</h2>
+<div>
+  <h3>Skills:</h3>
+  <% @jobseeker.skills.each do |skill| %>
+    <%= skill.name %>
+    <br>
+  <% end %>
+</div>
