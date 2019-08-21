@@ -10,3 +10,11 @@
 <h1>
   Requirements: <%= @job.requirements %>
 </h1>
+
+<div>
+<h1>Skill Requirements:</h1>
+  <% @job.skills.each do |skill| %>
+    <h1><%= skill.name %></h1>
+    <br>
+  <% end %>
+</div>
