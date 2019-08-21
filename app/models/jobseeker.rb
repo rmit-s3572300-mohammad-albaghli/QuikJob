@@ -1,4 +1,5 @@
 class Jobseeker < ApplicationRecord
+  has_and_belongs_to_many :skills
   
   #Validations
   before_save { self.email = email.downcase }
