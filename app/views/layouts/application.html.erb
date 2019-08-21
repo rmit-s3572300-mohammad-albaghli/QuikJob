@@ -1,5 +1,6 @@
 <html>
   <head>
+    <title><%= yield(:title) %> | QuikJob</title>
     <%= csrf_meta_tags %>
     <%= stylesheet_link_tag    'application', media: 'all',
                                               'data-turbolinks-track': 'reload' %>
@@ -16,5 +17,6 @@
       <%= yield %>
     </div>
   </body>
+
   <%= render 'layouts/footer' %>
 </html>
