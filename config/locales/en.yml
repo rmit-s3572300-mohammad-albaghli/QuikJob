@@ -31,3 +31,22 @@
 
 en:
   hello: "Hello world"
+  activerecord:
+    attributes:
+      jobseeker:
+        email: "Email"
+        password_confirmation: "Password Confirmation"
+      errors:
+        models:
+          jobseeker:
+            attributes:
+              name:
+               blank: "cannot be empty."
+              email:
+                blank: "cannot be empty."
+                invalid: "must be a valid email."
+              password:
+                blank: "cannot be empty."
+              password_confirmation:
+               blank: "needs to be entered."
+               invalid: "needs to match Password."  

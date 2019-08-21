@@ -6,6 +6,13 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   root_path %></li>
+            <% if logged_in_employer? %>
+              <li><%= link_to "Post a Job", create_job_path %></li>
+              <li><%= link_to "Profile", current_employer %></li>
+            <% end %> 
+            <% if logged_in_jobseeker? %>
+              <li><%= link_to "Profile", current_jobseeker %></li>
+            <% end %> 
             <% if logged_in_employer? || logged_in_jobseeker? %>
               <li><%= link_to "Logout", logout_path, method: :delete %></li>
             <% else %>
