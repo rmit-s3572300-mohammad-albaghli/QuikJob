@@ -13,6 +13,14 @@
       <%= f.label :requirements %>
       <%= f.text_area :requirements %>
       
+      <%= f.label "Required Skills:" %>
+      <% Skill.all.each do |skill| %>
+        <%= check_box_tag "skills[]", skill.id, @job.skill_ids.include?(skill.id) %>
+        <%= skill.name %>
+      <% end %>
+      
+      
+      
       <%= f.submit "Post this job!", class: "btn btn-primary" %>
     <% end %>
   </div>

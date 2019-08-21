@@ -1,6 +1,4 @@
 class JobsController < ApplicationController
-  # Prevent none employers from creating a job post
-  # before_action :logged_in_employer?, only: [:create, :destroy]
   
   def show
     @job = Job.find(params[:id])
@@ -12,6 +10,7 @@ class JobsController < ApplicationController
   
   def create
     @job = current_employer.jobs.build(job_params)
+    @job.skill_ids = params[:skills]
     if @job.save
       flash[:success] = "You have successfully listed a new job."
       redirect_to current_employer
