@@ -6,6 +6,16 @@
         <nav>
           <ul class="nav navbar-nav navbar-right">
             <li><%= link_to "Home",   root_path %></li>
+            <% if logged_in_employer? %>
+              <li><%= link_to "Post a Job", create_job_path %></li>
+              <li><%= link_to "Profile", current_employer %></li>
+            <% end %> 
+            <% if logged_in_jobseeker? %>
+              <li><%= link_to "Profile", current_jobseeker %></li>
+              <li>
+                <%= link_to "Edit Profile", edit_jobseeker_path(current_jobseeker.id) %>
+              </li>
+            <% end %> 
             <% if logged_in_employer? || logged_in_jobseeker? %>
               <li><%= link_to "Logout", logout_path, method: :delete %></li>
             <% else %>
@@ -14,7 +24,7 @@
                Login
               </a>
               <ul class="dropdown-menu">
-                <li ><%= link_to "Job Seeker", login_path(:membertype => "jobseeker")%></li>
+                <li><%= link_to "Job Seeker", login_path(:membertype => "jobseeker")%></li>
                 <li><%= link_to "Employer", login_path(:membertype => "employer")%></li>
               </ul>
           </li>

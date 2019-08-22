@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
           flash.now[:danger] = 'Invalid email/password combination!'
-          render 'new'
+          redirect_to :membertype=> "employer"
         end
     elsif params[:membertype] == "jobseeker"
     jobseeker = Jobseeker.find_by(email: params[:session][:email].downcase)
@@ -23,10 +23,11 @@ class SessionsController < ApplicationController
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
           flash.now[:danger] = 'Invalid email/password combination!'
-          render 'new'
+          redirect_to :membertype=> "jobseeker"
         end
     else 
-      render 'new'
+      flash.now[:danger] = "There's an error in the URL, please try to log in again!"
+      redirect_to root_url
     end
   end
   

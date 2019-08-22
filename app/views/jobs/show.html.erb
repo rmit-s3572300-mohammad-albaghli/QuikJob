@@ -1,0 +1,24 @@
+<% provide(:title, @job.name) %>
+<h1>
+  Job's Position: <%= @job.name %>
+</h1>
+<h1>
+  Posted By: <%= link_to Employer.find(@job.employer_id).name, Employer.find(@job.employer_id) %>
+</h1>
+<h1>
+  Information: <%= @job.info %>
+</h1>
+<h1>
+  Requirements: <%= @job.requirements %>
+</h1>
+
+<div>
+<h1>Skill Requirements:</h1>
+  <% @job.skills.each do |skill| %>
+    <h1><%= skill.name %></h1>
+    <br>
+  <% end %>
+</div>
+<% if current_employer && current_employer == @job.employer %>
+  <%= link_to "Find Match!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary" %>
+<% end %>

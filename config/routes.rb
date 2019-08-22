@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  get 'skills/new'
+
   get 'sessions/new'
 
   root 'static_pages#Home'
@@ -22,10 +24,19 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   
+  # Routes for job pages
+  get '/create_job', to: 'jobs#new'
+  post '/create_job', to: 'jobs#create'
+
   # Routes for error pages
   get '/404', to: "errors#not_found"
   get '/422', to: "errors#unacceptable"
   get '/500', to: "errors#server_errors"
   
+  # Routes for matching pages
+  get '/match_jobseeker', to: "matches#match_js"
+  get '/match_employer', to: "matches#match_em"
+  
   resources :employers, :jobseekers
+  resources :jobs, :skills
 end

@@ -1,21 +1,16 @@
-<!DOCTYPE html>
+<% provide(:title, "Home") %>
 <html>
-  <head>
-    <title>Home | QuikJob</title>
-  </head>
   <body>
   <div class="center jumbotron">
     
-  <h1>Welcome to the QuikJob</h1>
-  <h2>
-   QuikJob, the best place to find employees or employment. Signup today and work freely "tomorrow"
-  </h2>
+    <h1>Welcome to the QuikJob</h1>
+    <h2>
+     QuikJob, the best place to find employees or employment. Signup today and work freely "tomorrow"
+    </h2>
 
-  <%= link_to "Job Seeker Signup", 'jobseeker_signup', class: "btn btn-lg btn-primary" %>
+    <%= link_to "Job Seeker Signup", 'jobseeker_signup', class: "btn btn-lg btn-primary" %>
   
-  <%= link_to "Employer Signup", 'employer_signup', class: "btn btn-lg btn-primary" %>
-</div>
-</div>
-
+    <%= link_to "Employer Signup", 'employer_signup', class: "btn btn-lg btn-primary" %>
+  </div>
   </body>
 </html>

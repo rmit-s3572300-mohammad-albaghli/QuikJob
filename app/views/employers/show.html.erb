@@ -1,3 +1,4 @@
+<% provide(:title, "Employer Home") %>
 <h1>
   Employer: <%= @employer.name %>
 </h1>
@@ -7,3 +8,19 @@
 <h1>
   Information: <%= @employer.info %>
 </h1>
+<hr>
+<div>
+  <% if @employer.jobs.any? %>
+    <h3>Posted Jobs (<%= @employer.jobs.count %>):</h3>
+      <hr>
+    <% @employer.jobs.each do |job| %>
+      <h4>
+        Job's Position: <%= link_to job.name, job %>
+      </h4>
+      <h4>
+        Information: <%= job.info %>
+      </h4>
+      <hr>
+    <% end %>
+  <% end %>
+</div>
