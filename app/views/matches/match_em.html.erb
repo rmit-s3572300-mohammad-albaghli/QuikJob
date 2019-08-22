@@ -1,0 +1,9 @@
+<h1>Match_em</h1>
+<h3>
+    List of candidates for <%= @job.name %> (<%= @list_matches.count %>):
+    <hr>
+    <% @list_matches.each do |match| %>
+        Name: <%= link_to match.name, match %>
+        <hr>
+    <% end %>
+</h3>

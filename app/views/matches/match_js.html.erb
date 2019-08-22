@@ -1,0 +1,11 @@
+<h1>Your matching jobs!</h1>
+<h3>
+    List of matching jobs (<%= @list_matches.count %>):
+    <hr>
+    <% @list_matches.each do |match| %>
+        <%= link_to match.name, match %>
+        <br>
+        Posted by: <%= match.employer.name %>
+        <hr>
+    <% end %>
+</h3>

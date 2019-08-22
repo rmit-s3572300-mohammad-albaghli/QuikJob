@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   get '/422', to: "errors#unacceptable"
   get '/500', to: "errors#server_errors"
   
+  # Routes for matching pages
+  get '/match_jobseeker', to: "matches#match_js"
+  get '/match_employer', to: "matches#match_em"
+  
   resources :employers, :jobseekers
   resources :jobs, :skills
 end
