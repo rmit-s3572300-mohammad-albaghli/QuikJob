@@ -13,6 +13,7 @@ class JobseekersController < ApplicationController
     @jobseeker = Jobseeker.new(jobseeker_params)
     @jobseeker.skill_ids = params[:skills]
     if @jobseeker.save
+      log_in_jobseeker @jobseeker 
       flash[:success] = "Welcome to QuikJob!"
       redirect_to @jobseeker
     else

@@ -11,6 +11,7 @@ class EmployersController < ApplicationController
     @employer = Employer.new(employer_params)
     if @employer.save
       flash[:success] = "You've successfully signed up!"
+      log_in_employer @employer
       redirect_to @employer
     else
       render 'new'
