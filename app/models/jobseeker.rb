@@ -1,6 +1,6 @@
 class Jobseeker < ApplicationRecord
   has_and_belongs_to_many :skills
-  
+  has_and_belongs_to_many :jobs
   #Validations
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { minimum: 4, maximum: 60 }
