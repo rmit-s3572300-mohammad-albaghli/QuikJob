@@ -2,7 +2,7 @@
 <h1>Edit your skills</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-     <%= form_for jobseeker_edit_skills_path(:id => @jobseeker.id) do |f| %>
+     <%= form_for jobseeker_edit_skills_path do |f| %>
      <%= hidden_field_tag :id, @jobseeker.id %>
       <%= f.label "Skills:" %>
       <% Skill.all.each do |skill| %>
