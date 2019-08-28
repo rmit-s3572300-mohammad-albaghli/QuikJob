@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
           flash[:success] = "You've successfully logged in!"
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
-          flash.now[:danger] = 'Invalid email/password combination!'
+          flash[:danger] = 'Invalid email/password combination!'
           redirect_to :membertype=> "employer"
         end
     elsif params[:membertype] == "jobseeker"
@@ -22,7 +22,7 @@ class SessionsController < ApplicationController
           flash[:success] = "You've successfully logged in!"
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
-          flash.now[:danger] = 'Invalid email/password combination!'
+          flash[:danger] = 'Invalid email/password combination!'
           redirect_to :membertype=> "jobseeker"
         end
     else 
