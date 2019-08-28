@@ -24,6 +24,17 @@ class JobseekersController < ApplicationController
     @jobseeker = Jobseeker.find(params[:id])
   end
   
+  def edit_skills
+    @jobseeker = Jobseeker.find(params[:id])
+  end
+  
+  def add_skills
+    @jobseeker = Jobseeker.find(params[:id])
+    @jobseeker.skill_ids = params[:skills]
+    @jobseeker.save
+    redirect_to @jobseeker
+  end
+  
   def update
     @jobseeker = Jobseeker.find(params[:id])
     @jobseeker.skill_ids = params[:skills]
