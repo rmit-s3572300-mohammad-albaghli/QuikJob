@@ -3,7 +3,7 @@ class MatchesController < ApplicationController
     def match_js
         if current_jobseeker
             #List of matching jobs
-            @list_matches = []
+            @list_matches = Hash.new 
             #Loop through all jobs and comparing matching skills
             Job.all.each do |job|
                 @skill_match = 0
@@ -15,9 +15,11 @@ class MatchesController < ApplicationController
                     end
                 end
                 if @skill_match > 0
-                    @list_matches << job
+                    @list_matches[job] = @skill_match
                 end
-            end 
+            end
+            @list_matches = Hash[@list_matches.sort_by { |job, matches| matches }]
+            @sorted = Hash[@list_matches.to_a.reverse]
         else
             flash[:danger] = "Please log in to view the matching page!"
             redirect_to root_path
@@ -28,7 +30,7 @@ class MatchesController < ApplicationController
     def match_em
         if current_employer
             #List of matching jobseeker
-            @list_matches = []
+           @list_matches = Hash.new 
             if params[:job_id]
                 @job = Job.find(params[:job_id])
                 #Loop through all jobseekers and compare skills
@@ -42,9 +44,11 @@ class MatchesController < ApplicationController
                         end
                     end
                     if @skill_match > 0
-                        @list_matches << jobseeker
+                        @list_matches[jobseeker] = @skill_match
                     end
                 end
+                 @list_matches = Hash[@list_matches.sort_by { |job, matches| matches }]
+                 @sorted = Hash[@list_matches.to_a.reverse]
             else
                 flash[:danger] = "This page does not exist!"
                 redirect_to root_path
