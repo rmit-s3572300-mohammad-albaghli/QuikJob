@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   #Routes for jobseeker model
   get '/jobseeker_signup', to: 'jobseekers#new'
   post '/jobseeker_signup', to: 'jobseekers#create'
+  get '/jobseeker_edit_skills', to: 'jobseekers#edit_skills'
+  post '/jobseeker_edit_skills', to: 'jobseekers#add_skills'
   
   #login routes
   get '/login', to: 'sessions#new'
