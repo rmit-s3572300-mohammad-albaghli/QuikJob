@@ -9,7 +9,6 @@ class SessionsController < ApplicationController
       employer = Employer.find_by(email: params[:session][:email].downcase)
         if employer && employer.authenticate(params[:session][:password])
           log_in_employer employer
-          flash[:success] = "You've successfully logged in!"
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
           flash[:danger] = 'Invalid email/password combination!'
@@ -19,7 +18,6 @@ class SessionsController < ApplicationController
     jobseeker = Jobseeker.find_by(email: params[:session][:email].downcase)
         if jobseeker && jobseeker.authenticate(params[:session][:password])
           log_in_jobseeker jobseeker 
-          flash[:success] = "You've successfully logged in!"
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
           flash[:danger] = 'Invalid email/password combination!'
