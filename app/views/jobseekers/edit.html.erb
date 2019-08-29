@@ -11,13 +11,6 @@
 
       <%= f.label :email %>
       <%= f.email_field :email %>
-      
-      <%= f.label "Skills:" %>
-      <% Skill.all.each do |skill| %>
-        <%= check_box_tag "skills[]", skill.id, @jobseeker.skill_ids.include?(skill.id) %>
-        <%= skill.name %>
-      <% end %>
-      
       <br>
       <%= f.label :password %>
       <%= f.password_field :password %>

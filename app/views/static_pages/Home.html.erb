@@ -1,16 +1,13 @@
 <% provide(:title, "Home") %>
-<html>
-  <body>
-  <div class="center jumbotron">
-    
+<div class="center jumbotron">
+  <% if logged_in_jobseeker? %>
+    <h1>Hi <%= Jobseeker.find(current_jobseeker.id).name %>, Welcome back!</h1>
+  <% elsif logged_in_employer? %>
+    <h1>Hi <%= Employer.find(current_employer.id).name %>, Welcome back!</h1>
+  <% else %>
     <h1>Welcome to the QuikJob</h1>
-    <h2>
-     QuikJob, the best place to find employees or employment. Signup today and work freely "tomorrow"
-    </h2>
-
+    <h2>QuikJob, the best place to find employees or employment. Signup today and work freely "tomorrow"</h2>
     <%= link_to "Job Seeker Signup", 'jobseeker_signup', class: "btn btn-lg btn-primary" %>
-  
     <%= link_to "Employer Signup", 'employer_signup', class: "btn btn-lg btn-primary" %>
-  </div>
-  </body>
-</html>
+  <% end %>
+</div>

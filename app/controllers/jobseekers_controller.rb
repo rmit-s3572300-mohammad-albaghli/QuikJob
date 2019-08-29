@@ -13,6 +13,7 @@ class JobseekersController < ApplicationController
     @jobseeker = Jobseeker.new(jobseeker_params)
     @jobseeker.skill_ids = params[:skills]
     if @jobseeker.save
+      log_in_jobseeker @jobseeker 
       flash[:success] = "Welcome to QuikJob!"
       redirect_to @jobseeker
     else
@@ -22,6 +23,23 @@ class JobseekersController < ApplicationController
   
   def edit
     @jobseeker = Jobseeker.find(params[:id])
+    if(current_jobseeker != @jobseeker)
+    	render :status => 404
+    end
+  end
+  
+  def edit_skills
+    @jobseeker = Jobseeker.find(params[:id])
+    if(current_jobseeker != @jobseeker)
+    	render :status => 404
+    end
+  end
+  
+  def add_skills
+    @jobseeker = Jobseeker.find(params[:id])
+    @jobseeker.skill_ids = params[:skills]
+    @jobseeker.save
+    redirect_to @jobseeker
   end
   
   def update

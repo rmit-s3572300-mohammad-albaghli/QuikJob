@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   #Routes for jobseeker model
   get '/jobseeker_signup', to: 'jobseekers#new'
   post '/jobseeker_signup', to: 'jobseekers#create'
+  get '/jobseeker_edit_skills', to: 'jobseekers#edit_skills'
+  post '/jobseeker_edit_skills', to: 'jobseekers#add_skills'
   
   #login routes
   get '/login', to: 'sessions#new'
@@ -27,7 +29,8 @@ Rails.application.routes.draw do
   # Routes for job pages
   get '/create_job', to: 'jobs#new'
   post '/create_job', to: 'jobs#create'
-
+  post '/job_apply', to: 'jobs#apply'
+  
   # Routes for error pages
   get '/404', to: "errors#not_found"
   get '/422', to: "errors#unacceptable"
