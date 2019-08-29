@@ -22,9 +22,35 @@ class JobsController < ApplicationController
   def destroy
   end
 
+  def apply
+    @job = Job.find(params[:job_id])
+    @jobseeker = Jobseeker.find(params[:user_id])
+    if (matched_job(@job, @jobseeker))
+      @job = Job.find(params[:job_id])
+      @job_jobseekers = @job.jobseeker_ids
+      @job_jobseekers << params[:user_id]
+      @job.jobseeker_ids = @job_jobseekers
+      @job.save
+      redirect_to @job
+    else
+      render_404
+    end
+  end
+  
   private
   def job_params
     params.require(:job).permit(:name, :info, :requirements)
+  end
+  
+  def matched_job(job, jobseeker)
+    job.skills.each do |skill|
+        jobseeker.skills.each do |js_skill|
+            if js_skill == skill
+                return true
+            end
+        end
+    end
+    return false
   end
   
 end

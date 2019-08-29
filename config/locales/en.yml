@@ -9,6 +9,9 @@ en:
         name: "Employer/Company's Name"
         email: "Email"
         password_confirmation: "Password Confirmation"
+      job:
+        name: "Job Position"
+        info: "Job's Description"
     errors:
       models:
         jobseeker:
