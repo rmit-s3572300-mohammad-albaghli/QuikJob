@@ -2,7 +2,6 @@
 <h1>Your matching jobs!</h1>
 <h3>
     List of matching jobs (<%= @list_matches.count %>):
-    <%= @sorted = Hash[@list_matches.to_a.reverse] %>
     
     <hr>
     <% @sorted.each do |key, value| %>
