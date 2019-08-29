@@ -23,10 +23,16 @@ class JobseekersController < ApplicationController
   
   def edit
     @jobseeker = Jobseeker.find(params[:id])
+    if(current_jobseeker != @jobseeker)
+    	render :status => 404
+    end
   end
   
   def edit_skills
     @jobseeker = Jobseeker.find(params[:id])
+    if(current_jobseeker != @jobseeker)
+    	render :status => 404
+    end
   end
   
   def add_skills
