@@ -24,14 +24,14 @@ class JobseekersController < ApplicationController
   def edit
     @jobseeker = Jobseeker.find(params[:id])
     if(current_jobseeker != @jobseeker)
-    	render :status => 404
+    	redirect_to :controller => 'errors', :action => 'not_found'
     end
   end
   
   def edit_skills
     @jobseeker = Jobseeker.find(params[:id])
     if(current_jobseeker != @jobseeker)
-    	render :status => 404
+    	redirect_to :controller => 'errors', :action => 'not_found'
     end
   end
   
