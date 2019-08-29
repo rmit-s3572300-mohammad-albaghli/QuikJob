@@ -3,8 +3,8 @@
 <h3>
     List of candidates for <%= @job.name %> (<%= @list_matches.count %>):
     <hr>
-    <% @list_matches.each do |match| %>
-        Name: <%= link_to match.name, match %>
+    <% @sorted.each do |key, value| %>
+        Name: <%= link_to key.name, key %>
         <hr>
     <% end %>
 </h3>
