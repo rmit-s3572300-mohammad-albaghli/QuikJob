@@ -33,7 +33,7 @@ class JobsController < ApplicationController
       @job.save
       redirect_to @job
     else
-      render_404
+      render :status => 404
     end
   end
   
