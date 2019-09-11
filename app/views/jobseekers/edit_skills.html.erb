@@ -7,8 +7,12 @@
       <%= f.label "Skills:" %>
       <% Skill.all.each do |skill| %>
         <%= check_box_tag "skills[]", skill.id, @jobseeker.skill_ids.include?(skill.id) %>
+        <%= select_tag "skills[]", options_for_select(skill.id), @jobseeker.skill_ids.include?(skill.id) %>
         <%= skill.name %>
       <% end %>
+      
+      
+      
       <%= f.submit "Confirm", class: "btn btn-primary" %>
     <% end %>
   </div>
