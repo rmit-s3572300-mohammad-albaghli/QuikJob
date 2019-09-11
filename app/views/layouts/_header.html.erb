@@ -8,22 +8,44 @@
             <li><%= link_to "Home",   root_path %></li>
             <% if logged_in_employer? %>
               <li><%= link_to "Post a Job", create_job_path %></li>
-              <li><%= link_to "Profile", current_employer %></li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                 <%= current_employer.name %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", current_employer %></li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Log out", logout_path, method: :delete %>
+                  </li>
+                </ul>
+              </li>
             <% end %> 
             <% if logged_in_jobseeker? %>
-              <li><%= link_to "Profile", current_jobseeker %></li>
-              <li>
-                <%= link_to "Edit Profile", edit_jobseeker_path(current_jobseeker.id) %>
-              </li>
-              <li>
-                <%= link_to "Edit Skills", jobseeker_edit_skills_path(:id => current_jobseeker.id) %>
-              </li>
               <li>
                 <%= link_to "Matched Jobs", match_jobseeker_path %>
               </li>
+              <li>
+                <%= link_to "Search Jobs", search_path %>
+              </li>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                 <%= current_jobseeker.name %> <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><%= link_to "Profile", current_jobseeker %></li>
+                  <li><%= link_to "Edit Profile", edit_jobseeker_path(current_jobseeker.id) %></li>
+                   <li>
+                     <%= link_to "Edit Skills", jobseeker_edit_skills_path(:id => current_jobseeker.id) %>
+                   </li>
+                  <li class="divider"></li>
+                  <li>
+                    <%= link_to "Log out", logout_path, method: :delete %>
+                  </li>
+                </ul>
+              </li>
             <% end %> 
             <% if logged_in_employer? || logged_in_jobseeker? %>
-              <li><%= link_to "Logout", logout_path, method: :delete %></li>
             <% else %>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
