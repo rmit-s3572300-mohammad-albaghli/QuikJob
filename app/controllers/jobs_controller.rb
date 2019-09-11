@@ -11,7 +11,6 @@ class JobsController < ApplicationController
   def create
     @job = current_employer.jobs.build(job_params)
     @job.skill_ids = params[:skills]
-    @job.available = true; 
     if @job.save
       flash[:success] = "You have successfully listed a new job."
       redirect_to current_employer
@@ -34,6 +33,18 @@ class JobsController < ApplicationController
       AppMailer.jobseeker_applied(@job.employer.name, @job.name, @job.employer.email, @jobseeker).deliver
       @job.save
       redirect_to @job
+    else
+    	redirect_to :controller => 'errors', :action => 'not_found'
+    end
+  end
+  
+  def offer
+    @job = Job.find(params[:job_id])
+    @jobseeker = Jobseeker.find(params[:user_id])
+    if (current_employer = @job.employer)
+      @job.available = false
+      AppMailer.jobseeker_notified(@job.employer.name, @job.name, @job.employer.email, @jobseeker.email, @jobseeker.name).deliver
+      @job.save
     else
     	redirect_to :controller => 'errors', :action => 'not_found'
     end
