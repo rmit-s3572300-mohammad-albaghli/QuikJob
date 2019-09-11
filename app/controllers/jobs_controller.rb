@@ -30,6 +30,7 @@ class JobsController < ApplicationController
       @job_jobseekers = @job.jobseeker_ids
       @job_jobseekers << params[:user_id]
       @job.jobseeker_ids = @job_jobseekers
+      AppMailer.jobseeker_applied(@job.employer.name, @job.name, @job.employer.email, @jobseeker).deliver
       @job.save
       redirect_to @job
     else

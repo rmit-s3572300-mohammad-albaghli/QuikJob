@@ -1,4 +1,6 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'from@example.com'
+  # Reusing email from another assignment
+  default from: "yourcourse.3572300@gmail.com"
   layout 'mailer'
+
 end
