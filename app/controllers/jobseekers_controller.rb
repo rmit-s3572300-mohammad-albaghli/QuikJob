@@ -56,7 +56,7 @@ class JobseekersController < ApplicationController
   #Define params
   private
     def jobseeker_params
-      params.require(:jobseeker).permit(:name, :email, :password, :password_confirmation)
+      params.require(:jobseeker).permit(:name, :email, :description, :password, :password_confirmation)
     end
 
 end
