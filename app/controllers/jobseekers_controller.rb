@@ -37,8 +37,13 @@ class JobseekersController < ApplicationController
   
   def add_skills
     @jobseeker = Jobseeker.find(params[:id])
-    @jobseeker.skill_ids = params[:skills]
-    @jobseeker.save
+    @new_skill = Skill.find(params[:skills])
+    if @jobseeker.skills.exclude?(@new_skill)
+      @jobseeker.skills.push(@new_skill)
+      @jobseeker.save
+    else
+      flash[:danger] = "The selected skill has already been added"
+    end
     redirect_to @jobseeker
   end
   

@@ -6,7 +6,7 @@
      <%= hidden_field_tag :id, @jobseeker.id %>
       <%= f.label "Skills:" %>
 
-       <%= select_tag "skills[]", options_from_collection_for_select(Skill.all, "id", "name") %>
+       <%= select_tag "skills", options_from_collection_for_select(Skill.all, "id", "name") %>
       <%= f.submit "Confirm", class: "btn btn-primary" %>
     <% end %>
   </div>

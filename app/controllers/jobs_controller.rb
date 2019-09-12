@@ -28,6 +28,7 @@ class JobsController < ApplicationController
   def create
     @job = current_employer.jobs.build(job_params)
     @job.skill_ids = params[:skills]
+    @job.available = true
     if @job.save
       flash[:success] = "You have successfully listed a new job."
       redirect_to current_employer
