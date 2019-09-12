@@ -5,10 +5,8 @@
      <%= form_for jobseeker_edit_skills_path do |f| %>
      <%= hidden_field_tag :id, @jobseeker.id %>
       <%= f.label "Skills:" %>
-      <% Skill.all.each do |skill| %>
-        <%= check_box_tag "skills[]", skill.id, @jobseeker.skill_ids.include?(skill.id) %>
-        <%= skill.name %>
-      <% end %>
+
+       <%= select_tag "skills", options_from_collection_for_select(Skill.all, "id", "name") %>
       <%= f.submit "Confirm", class: "btn btn-primary" %>
     <% end %>
   </div>

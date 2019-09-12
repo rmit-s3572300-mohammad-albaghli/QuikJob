@@ -1,0 +1,22 @@
+<h1>Search jobs!</h1>
+<form class="footerform" action="search">
+  <h4>Skills:</h4>
+  <% Skill.all.each do |skill| %>
+  <div>
+    <%= skill.name %>
+    <% if @skills %>
+      <%= check_box_tag "skill_ids[]", skill.id, @skills.include?(skill.id) %>
+    <% else %>
+      <%= check_box_tag "skill_ids[]", skill.id %>
+    <% end %>
+  </div>
+  <% end %>
+  <%= submit_tag "Search", class: "btn btn-sm btn-primary" %>
+</form>
+<h2>Search Result:</h2>
+<% if @jobs %>
+  <% @jobs.each do |job| %>
+    <%= link_to job.name, job %>
+    <br>
+  <% end %>
+<% end %>

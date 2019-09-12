@@ -6,17 +6,19 @@ class MatchesController < ApplicationController
             @list_matches = Hash.new 
             #Loop through all jobs and comparing matching skills
             Job.all.each do |job|
-                @skill_match = 0
-                job.skills.each do |skill|
-                    current_jobseeker.skills.each do |js_skill|
-                        if js_skill == skill
-                            @skill_match += 1
+                if job.available
+                    @skill_match = 0
+                    job.skills.each do |skill|
+                        current_jobseeker.skills.each do |js_skill|
+                            if js_skill == skill
+                                @skill_match += 1
+                            end
                         end
                     end
-                end
-                if @skill_match > 0
-                    @list_matches[job] = @skill_match
-                end
+                    if @skill_match > 0
+                        @list_matches[job] = @skill_match
+                    end
+                end 
             end
             @list_matches = Hash[@list_matches.sort_by { |job, matches| matches }]
             @sorted = Hash[@list_matches.to_a.reverse]

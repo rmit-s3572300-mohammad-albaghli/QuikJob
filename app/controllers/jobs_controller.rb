@@ -8,9 +8,27 @@ class JobsController < ApplicationController
     @job = Job.new
   end
   
+  def search
+    if params[:skill_ids]
+      @name = params[:name]
+      @skills = params[:skill_ids]
+      @jobs = Array.new
+      #add jobs into list based on filter
+      Job.all.each do |job|
+        @skills.each do |skill_id|
+          skill = Skill.find(skill_id)
+          if job.skills.include?(skill) && @jobs.exclude?(job)
+            @jobs.push(job)
+          end
+        end
+      end
+    end
+  end
+  
   def create
     @job = current_employer.jobs.build(job_params)
     @job.skill_ids = params[:skills]
+    @job.available = true
     if @job.save
       flash[:success] = "You have successfully listed a new job."
       redirect_to current_employer
@@ -30,8 +48,21 @@ class JobsController < ApplicationController
       @job_jobseekers = @job.jobseeker_ids
       @job_jobseekers << params[:user_id]
       @job.jobseeker_ids = @job_jobseekers
+      AppMailer.jobseeker_applied(@job.employer.name, @job.name, @job.employer.email, @jobseeker).deliver
       @job.save
       redirect_to @job
+    else
+    	redirect_to :controller => 'errors', :action => 'not_found'
+    end
+  end
+  
+  def offer
+    @job = Job.find(params[:job_id])
+    @jobseeker = Jobseeker.find(params[:user_id])
+    if (current_employer = @job.employer)
+      @job.available = false
+      AppMailer.jobseeker_notified(@job.employer.name, @job.name, @job.employer.email, @jobseeker.email, @jobseeker.name).deliver
+      @job.save
     else
     	redirect_to :controller => 'errors', :action => 'not_found'
     end
