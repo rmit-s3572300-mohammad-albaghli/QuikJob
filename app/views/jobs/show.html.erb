@@ -31,12 +31,15 @@
 <% end %>
 
 <% if current_employer && current_employer == @job.employer %>
+<% if @job.available %>
 <h1>Applicant List:</h1>
   <% @job.jobseekers.each do |jobseeker| %>
-    <h1><%= link_to jobseeker.name, jobseeker %></h1>
+    <h3><%= link_to jobseeker.name, jobseeker %> <%= link_to "Send Offer!", job_offer_path(:user_id => jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success", :method => :post %></h3>
     <br>
   <% end %>
 </div>
   <%= link_to "Find Match!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary" %>
+<% else %>
+<h1>This job has been closed!</h1>
 <% end %>
-
+<% end %>
