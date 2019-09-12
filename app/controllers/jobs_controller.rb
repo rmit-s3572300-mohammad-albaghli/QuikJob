@@ -8,6 +8,23 @@ class JobsController < ApplicationController
     @job = Job.new
   end
   
+  def search
+    if params[:skill_ids]
+      @name = params[:name]
+      @skills = params[:skill_ids]
+      @jobs = Array.new
+      #add jobs into list based on filter
+      Job.all.each do |job|
+        @skills.each do |skill_id|
+          skill = Skill.find(skill_id)
+          if job.skills.include?(skill) && @jobs.exclude?(job)
+            @jobs.push(job)
+          end
+        end
+      end
+    end
+  end
+  
   def create
     @job = current_employer.jobs.build(job_params)
     @job.skill_ids = params[:skills]
