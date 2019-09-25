@@ -33,6 +33,8 @@ Rails.application.routes.draw do
   get '/search', to: 'jobs#search'
   post '/search', to: 'jobs#search'
   post '/job_offer', to: 'jobs#offer'
+  post '/job_close', to: 'jobs#close'
+  post '/job_reopen', to: 'jobs#reopen'
 
   # Routes for error pages
   get '/404', to: "errors#not_found"

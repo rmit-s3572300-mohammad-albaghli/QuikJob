@@ -60,12 +60,25 @@ class JobsController < ApplicationController
     @job = Job.find(params[:job_id])
     @jobseeker = Jobseeker.find(params[:user_id])
     if (current_employer = @job.employer)
-      @job.available = false
       AppMailer.jobseeker_notified(@job.employer.name, @job.name, @job.employer.email, @jobseeker.email, @jobseeker.name).deliver
       @job.save
     else
     	redirect_to :controller => 'errors', :action => 'not_found'
     end
+  end
+  
+  def close
+    @job = Job.find(params[:job_id])
+    @job.available = false
+    @job.save
+    redirect_to @job
+  end
+  
+  def reopen
+    @job = Job.find(params[:job_id])
+    @job.available = true
+    @job.save
+    redirect_to @job
   end
   
   private

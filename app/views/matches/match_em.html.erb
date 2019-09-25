@@ -5,6 +5,7 @@
     <hr>
     <% @sorted.each do |key, value| %>
         Name: <%= link_to key.name, key %>
+        <%= link_to "Send Offer!", job_offer_path(:user_id => key.id, :job_id => @job.id), class: "btn btn-lg btn-info", :method => :post %>
         <hr>
     <% end %>
 </h3>
