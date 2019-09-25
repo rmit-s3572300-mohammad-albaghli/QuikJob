@@ -2,12 +2,24 @@
 <h1>Your matching jobs!</h1>
 <h3>
     List of matching jobs (<%= @list_matches.count %>):
-    
     <hr>
-    <% @sorted.each do |key, value| %>
-    <%= link_to key.name, key %> 
-        <br>
-        Posted by: <%= key.employer.name %>
-        <hr>
-    <% end %>
+    <div class = "row">
+        <% @sorted.each do |key, value| %>
+            <%= link_to key do %>
+            <div class="col-lg-4 col-sm-6 mb-4 outer-container">
+                <div class="card-body">
+                  <div class="card-title">
+                    <%= key.name%>
+                  </div>
+                  <hr class = "card-line">
+                  <div class="card-text"><%= key.info %></div>
+                  <div class = "card-poster italics">
+                      <span class="bold">Posted by: </span><%= key.employer.name %>
+                  </div>
+                </div>
+            </div>
+            <% end %>
+        <% end %>
+    </div>
 </h3>
+
