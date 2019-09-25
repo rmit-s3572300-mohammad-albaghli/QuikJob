@@ -1,1 +1,63 @@
 <% provide(:title, @job.name) %>
+<div class="card border-0 shadow my-5 container-padding">
+  <div class="text-surround">
+    <h1><span class="bold"><%= @job.name %></span></h1>
+    <h2><span class="italics">Posted By: <%= link_to Employer.find(@job.employer_id).name, Employer.find(@job.employer_id) %></span></h2>
+    <hr>
+    <div class="main-text-jobs">
+      <span class="bold">Information: </span><%= @job.info %><br>
+      <span class="bold">Requirements: </span><%= @job.requirements %><br>
+      <span class="bold">Skill Requirements: </span><br>
+      <div class="spacer"></div>
+      <ul>
+        <% @job.skills.each do |skill| %>
+            <li><%= skill.name %></li>
+        <% end %>
+      </ul>
+      <% if current_jobseeker %>
+        <% matched_job(@job, current_jobseeker) %>
+        <% if !is_applied(@job, current_jobseeker.id) %>
+          <h1>This job matches you!</h1>
+          <%= link_to "Apply!", job_apply_path(:user_id => current_jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success", :method => :post %>
+          <% else %>
+          <h1>You've applied for this job!</h1>
+          <% end %>
+        <% end %>
+        <% if current_employer && current_employer == @job.employer %>
+          <% if @job.available %>
+          <span class="bold">Applicant list: </span>
+          <div class="spacer"></div>
+          <div class = "row">
+            <% @job.jobseekers.each do |jobseeker| %>
+                <div class="col-lg-4 col-sm-6 mb-4 outer-container-applicants">
+                    <div class="card-body-applicants">
+                      <div class="card-title">
+                        <%= link_to jobseeker.name, jobseeker %>
+                      </div>
+                      <hr class = "card-line">
+                      <div class="card-text-skills">
+                        <span class="bold">Skills:</span>
+                        <div class="spacer"></div>
+                        <ul>
+                            <% jobseeker.skills.each do |skill| %>
+                                <li><%= skill.name %></li>
+                            <% end %>
+                        </ul>
+                      </div>
+                      <%= link_to "Send Offer!", job_offer_path(:user_id => jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success right-button", :method => :post %>
+                    </div>
+                </div>
+            <% end %>
+          </div>
+          <div class="spacer"></div>
+          </div>
+          <%= link_to "Find Matches!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary" %>
+          <%= link_to "Close Job", job_close_path(:job_id => @job.id), class: "btn btn-lg btn-danger right-button" , :method => :post %>
+        <% else %>
+          <h1>This job has been closed!</h1>
+          <%= link_to "Re-open Job", job_reopen_path(:job_id => @job.id), class: "btn btn-lg btn-success" , :method => :post %>
+        <% end %>
+      <% end %>      
+    </div>
+  </div>
+</div>

@@ -2,7 +2,7 @@
 <% if logged_in_jobseeker? %>
   <body class = "jobseeker-body">
     <div class="container-jobseeker">
-      <div class="card border-0 shadow my-5">
+      <div class="card border-0 shadow my-5 container-padding">
         <div class="text-surround">
           <h1>Welcome back <span class="bold"><%= Jobseeker.find(current_jobseeker.id).name %>!</span></h1>
           <h2>QuikJob allows you to find jobs with a simple click of a button!</h2>
@@ -21,7 +21,7 @@
 <% elsif logged_in_employer? %>
   <body class = "employer-body">
     <div class="container-employer">
-      <div class="card border-0 shadow my-5">
+      <div class="card border-0 shadow my-5 container-padding">
         <div class="text-surround">
           <h1>Welcome back <span class="bold"><%= Employer.find(current_employer.id).name %>!</span></h1>
           <h2>QuikJob is your quick way to find employees!</h2>
