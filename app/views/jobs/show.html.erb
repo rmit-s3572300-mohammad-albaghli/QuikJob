@@ -39,7 +39,9 @@
   <% end %>
 </div>
   <%= link_to "Find Match!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary" %>
+  <%= link_to "Close Job", job_close_path(:job_id => @job.id), class: "btn btn-lg btn-danger" , :method => :post %>
 <% else %>
 <h1>This job has been closed!</h1>
+<%= link_to "Re-open Job", job_reopen_path(:job_id => @job.id), class: "btn btn-lg btn-success" , :method => :post %>
 <% end %>
 <% end %>
