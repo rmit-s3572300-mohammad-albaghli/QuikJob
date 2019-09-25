@@ -1,13 +1,23 @@
 <% provide(:title, "Home") %>
-<div class="center jumbotron">
-  <% if logged_in_jobseeker? %>
-    <h1>Hi <%= Jobseeker.find(current_jobseeker.id).name %>, Welcome back!</h1>
-  <% elsif logged_in_employer? %>
-    <h1>Hi <%= Employer.find(current_employer.id).name %>, Welcome back!</h1>
-  <% else %>
-    <h1>Welcome to the QuikJob</h1>
-    <h2>QuikJob, the best place to find employees or employment. Signup today and work freely "tomorrow"</h2>
-    <%= link_to "Job Seeker Signup", 'jobseeker_signup', class: "btn btn-lg btn-primary" %>
-    <%= link_to "Employer Signup", 'employer_signup', class: "btn btn-lg btn-primary" %>
-  <% end %>
-</div>
+<% if logged_in_jobseeker? %>
+  <h1>Hi <%= Jobseeker.find(current_jobseeker.id).name %>, Welcome back!</h1>
+<% elsif logged_in_employer? %>
+  <h1>Hi <%= Employer.find(current_employer.id).name %>, Welcome back!</h1>
+<% else %>
+  <div id="top">
+    <div class="split left">
+      <div class="centered">
+        <%= link_to "Looking for Jobs?", 'jobseeker_signup', class: "btn btn-lg btn-primary signup-btn-jobseeker" %>
+        <hr>
+        <div class="surround-url">Already registered? <%= link_to "Login as Jobseeker!", login_path(:membertype => "jobseeker"), class: "signup-url" %></div>
+      </div>
+    </div>
+    <div class="split right">
+      <div class="centered">
+        <%= link_to "Looking for staff?", 'employer_signup', class: "btn btn-lg btn-primary signup-btn-employer" %>
+        <hr>
+        <div class="surround-url">Already registered? <%= link_to "Login as Employer!", login_path(:membertype => "employer"), class: "signup-url" %></div>
+      </div>
+    </div>
+  </div>
+<% end %>
