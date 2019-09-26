@@ -1,5 +1,5 @@
 class Jobseeker < ApplicationRecord
-  attr_accessor :remember_token
+  attr_accessor :remember_token, :custom_skill
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :jobs
   #Validations
