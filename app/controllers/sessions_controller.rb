@@ -10,7 +10,6 @@ class SessionsController < ApplicationController
         if employer && employer.authenticate(params[:session][:password])
           log_in_employer employer
           params[:session][:remember_me] == '1' ? rememberEmployer(employer) :forgetEmployer(employer)
-          flash[:success] = "You've successfully logged in!"
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
           flash[:danger] = 'Invalid email/password combination!'
@@ -21,7 +20,6 @@ class SessionsController < ApplicationController
         if jobseeker && jobseeker.authenticate(params[:session][:password])
           log_in_jobseeker jobseeker 
           params[:session][:remember_me] == '1' ? rememberJobseeker(jobseeker) :forgetJobseeker(jobseeker)
-          flash[:success] = "You've successfully logged in!"
           redirect_to :controller => 'static_pages', :action => 'Home'
         else
           flash[:danger] = 'Invalid email/password combination!'
