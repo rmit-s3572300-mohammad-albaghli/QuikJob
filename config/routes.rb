@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  get '/search_json', to: 'jobseekers#search_json'
   get 'skills/new'
-
   get 'sessions/new'
 
   root 'static_pages#Home'
@@ -19,7 +21,9 @@ Rails.application.routes.draw do
   get '/jobseeker_signup', to: 'jobseekers#new'
   post '/jobseeker_signup', to: 'jobseekers#create'
   get '/jobseeker_edit_skills', to: 'jobseekers#edit_skills'
-  post '/jobseeker_edit_skills', to: 'jobseekers#add_skills'
+  post '/jobseeker_edit_skills', to: 'jobseekers#confirm_skills'
+  patch '/jobseeker_add_skills', to: 'jobseekers#add_skills'
+  post '/jobseeker_skill_delete', to: 'jobseekers#delete_skills'
   
   #login routes
   get '/login', to: 'sessions#new'
@@ -33,6 +37,8 @@ Rails.application.routes.draw do
   get '/search', to: 'jobs#search'
   post '/search', to: 'jobs#search'
   post '/job_offer', to: 'jobs#offer'
+  post '/job_close', to: 'jobs#close'
+  post '/job_reopen', to: 'jobs#reopen'
 
   # Routes for error pages
   get '/404', to: "errors#not_found"

@@ -10,8 +10,8 @@ class EmployersController < ApplicationController
   def create
     @employer = Employer.new(employer_params)
     if @employer.save
-      flash[:success] = "You've successfully signed up!"
       log_in_employer @employer
+      flash[:success] = "Welcome to QuikJob!"
       redirect_to @employer
     else
       render 'new'
