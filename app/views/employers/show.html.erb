@@ -32,7 +32,7 @@
                     <br>
                     <span class="bold">Requirements: </span><%= job.requirements %>
                     <br>
-                    <% if current_employer && current_employer == @job.employer %>
+                    <% if current_employer && current_employer == job.employer %>
                       <span class="bold">Number of Applicants: </span>(<%= job.jobseekers.count %>)
                     <% end %>
                   </div>

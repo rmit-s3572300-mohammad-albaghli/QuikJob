@@ -15,7 +15,7 @@
     <% end %>
     
     
-    <%= form_for jobseeker_add_skills_path do |f| %>
+    <%= form_for @jobseeker, :url => jobseeker_add_skills_path do |f| %>
     <%= hidden_field_tag :id, @jobseeker.id %>
 
       <%= select_tag "skills", options_from_collection_for_select(Skill.all, "id", "name") %>

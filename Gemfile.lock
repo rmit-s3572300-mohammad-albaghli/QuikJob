@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/activeadmin/activeadmin
-  revision: dcff71492f590d722b70d420a05dfdd9da1ec387
+  revision: 5a7db303904260f14aa653cc8280b91c56f92fa6
   specs:
     activeadmin (2.3.1)
       arbre (~> 1.2, >= 1.2.1)
@@ -280,7 +280,6 @@ DEPENDENCIES
   pg (= 0.20.0)
   puma (= 3.9.1)
   rails (= 5.1.6)
-  ransack (~> 1.8)
   sass-rails (= 5.0.6)
   spring (= 2.0.2)
   spring-watcher-listen (= 2.0.1)
