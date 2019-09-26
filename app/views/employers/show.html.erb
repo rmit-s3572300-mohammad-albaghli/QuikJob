@@ -1,26 +1,44 @@
 <% provide(:title, "Employer Home") %>
-<h1>
-  Employer: <%= @employer.name %>
-</h1>
-<h1>
-  Email: <%= @employer.email %>
-</h1>
-<h1>
-  Information: <%= @employer.info %>
-</h1>
-<hr>
-<div>
-  <% if @employer.jobs.any? %>
-    <h3>Posted Jobs (<%= @employer.jobs.count %>):</h3>
-      <hr>
-    <% @employer.jobs.each do |job| %>
-      <h4>
-        Job's Position: <%= link_to job.name, job %>
-      </h4>
-      <h4>
-        Information: <%= job.info %>
-      </h4>
-      <hr>
-    <% end %>
-  <% end %>
-</div>
+<body class = "employer-body">
+  <div class="container-employer">
+    <div class="card border-0 shadow my-5 container-padding">
+      <div class="text-surround">
+        <h1><span class="bold">
+          Name: <%= @employer.name %></span>
+          <br>
+          Email: <%= @employer.email %>
+        </h1>
+        <hr>
+        <div class="main-text">
+          <span class = italics>
+            Information:<br>
+            <%= @employer.info %>
+            <br>
+          </span>
+        </div>
+        <hr>
+        <span class="bold bigger_text">Posted Jobs (<%= @employer.jobs.count %>):</span>
+        <div class = "row">
+          <% @employer.jobs.each do |job| %>
+              <%= link_to job do %>
+              <div class="col-lg-4 col-sm-6 mb-4 outer-container">
+                  <div class="card-body-jobs">
+                    <div class="card-title">
+                      <%= job.name %>
+                    </div>
+                    <hr class = "card-line">
+                    <div class="card-text-jobs">
+                      <span class="bold">Info: </span><%= job.info %>
+                      <br>
+                      <span class="bold">Requirements: </span><%= job.requirements %>
+                    </div>
+                  </div>
+              </div>
+              <% end %>
+          <% end %>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</body>

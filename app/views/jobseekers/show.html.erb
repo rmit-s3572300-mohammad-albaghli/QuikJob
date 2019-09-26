@@ -1,22 +1,32 @@
 <% provide(:title, "Profile Page") %>
-<h1>Welcome to your profile page!</h1>
-<h2>
-  Name: <%= @jobseeker.name %>
-  <br>
-  Email: <%= @jobseeker.email %>
-</h2>
-<div>
-  <h2>
-    Description:
-    <br>
-    <%= @jobseeker.description %>
-  </h2>
-  
-</div>
-<div>
-  <h3>Skills:</h3>
-  <% @jobseeker.skills.each do |skill| %>
-    <%= skill.name %>
-    <br>
-  <% end %>
-</div>
+<body class = "jobseeker-body">
+  <div class="container-jobseeker">
+    <div class="card border-0 shadow my-5 container-padding">
+      <div class="text-surround">
+        <h1><span class="bold">
+          Name: <%= @jobseeker.name %></span>
+          <br>
+          Email: <%= @jobseeker.email %>
+        </h1>
+        <hr>
+        <div class="main-text">
+          <span class = italics>
+            Bio:<br>
+            <%= @jobseeker.description %>
+            <br>
+          </span>
+        </div>
+        <div class="profile-skills-container">
+        <span class="bold">Skills:</span>
+        <div class="spacer"></div>
+        <ul>
+          <% @jobseeker.skills.each do |skill| %>
+              <li><%= skill.name %></li>
+          <% end %>
+        </ul>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</body>
