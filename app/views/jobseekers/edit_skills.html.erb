@@ -2,12 +2,41 @@
 <h1>Edit your skills</h1>
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-     <%= form_for jobseeker_edit_skills_path do |f| %>
+     <%= form_for @jobseeker, :url => jobseeker_add_skills_path do |f| %>
      <%= hidden_field_tag :id, @jobseeker.id %>
+     <%= hidden_field_tag :form_action, "custom" %>
+      
       <%= f.label "Skills:" %>
+    
+      <%= f.text_field :custom_skill %> 
+      <%= f.submit "Add", class: "btn btn-primary" %>
+      <br>
 
-       <%= select_tag "skills", options_from_collection_for_select(Skill.all, "id", "name") %>
-      <%= f.submit "Confirm", class: "btn btn-primary" %>
     <% end %>
+    
+    
+    <%= form_for jobseeker_add_skills_path do |f| %>
+    <%= hidden_field_tag :id, @jobseeker.id %>
+
+      <%= select_tag "skills", options_from_collection_for_select(Skill.all, "id", "name") %>
+      <%= f.submit "Add", class: "btn btn-primary" %>
+      <br>
+      <%= f.label "Current Skills:" %> 
+      <br>
+    <% end %>
+    
+    <% @jobseeker.skills.each do |skill| %>
+     <%= skill.name %>
+     <%= link_to "X", jobseeker_skill_delete_path(:id => @jobseeker.id, :skill_id => skill.id), :method => :post %>
+     <br>
+    <% end %>
+   
+   
+    <%= form_for jobseeker_edit_skills_path do |f| %>
+     <%= hidden_field_tag :id, @jobseeker.id %>
+     
+     <%= f.submit "Confirm", class: "btn btn-primary" %>
+    <% end %>
+       
   </div>
 </div>

@@ -3,9 +3,26 @@
 <h3>
     List of candidates for <%= @job.name %> (<%= @list_matches.count %>):
     <hr>
-    <% @sorted.each do |key, value| %>
-        Name: <%= link_to key.name, key %>
-        <%= link_to "Send Offer!", job_offer_path(:user_id => key.id, :job_id => @job.id), class: "btn btn-lg btn-info", :method => :post %>
-        <hr>
-    <% end %>
+    <div class = "row">
+        <% @sorted.each do |key, value| %>
+            <div class="col-lg-4 col-sm-6 mb-4 outer-container">
+                <div class="card-body">
+                  <div class="card-title">
+                    <%= link_to key.name, key %>
+                  </div>
+                  <hr class = "card-line">
+                  <div class="card-text-skills">
+                    <span class="bold">Skills:</span>
+                    <div class="spacer"></div>
+                    <ul>
+                        <% key.skills.each do |skill| %>
+                            <li><%= skill.name %></li>
+                        <% end %>
+                    </ul>
+                  </div>
+                  <%= link_to "Send Offer!", job_offer_path(:user_id => key.id, :job_id => @job.id), class: "btn btn-lg btn-info offer-btn", :method => :post %>
+                </div>
+            </div>
+        <% end %>
+    </div>
 </h3>

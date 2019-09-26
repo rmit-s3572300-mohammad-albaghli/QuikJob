@@ -32,7 +32,7 @@ class MatchesController < ApplicationController
     def match_em
         if current_employer
             #List of matching jobseeker
-           @list_matches = Hash.new 
+            @list_matches = Hash.new 
             if params[:job_id]
                 @job = Job.find(params[:job_id])
                 #Loop through all jobseekers and compare skills

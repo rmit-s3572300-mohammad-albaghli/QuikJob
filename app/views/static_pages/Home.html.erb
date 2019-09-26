@@ -1,13 +1,55 @@
 <% provide(:title, "Home") %>
-<div class="center jumbotron">
-  <% if logged_in_jobseeker? %>
-    <h1>Hi <%= Jobseeker.find(current_jobseeker.id).name %>, Welcome back!</h1>
-  <% elsif logged_in_employer? %>
-    <h1>Hi <%= Employer.find(current_employer.id).name %>, Welcome back!</h1>
-  <% else %>
-    <h1>Welcome to the QuikJob</h1>
-    <h2>QuikJob, the best place to find employees or employment. Signup today and work freely "tomorrow"</h2>
-    <%= link_to "Job Seeker Signup", 'jobseeker_signup', class: "btn btn-lg btn-primary" %>
-    <%= link_to "Employer Signup", 'employer_signup', class: "btn btn-lg btn-primary" %>
-  <% end %>
-</div>
+<% if logged_in_jobseeker? %>
+  <body class = "jobseeker-body">
+    <div class="container-jobseeker">
+      <div class="card border-0 shadow my-5 container-padding">
+        <div class="text-surround">
+          <h1>Welcome back <span class="bold"><%= Jobseeker.find(current_jobseeker.id).name %>!</span></h1>
+          <h2>QuikJob allows you to find jobs with a simple click of a button!</h2>
+          <hr>
+          <div class="main-text">To match with more jobs please add some more skills to your profile. 
+            You can do that by clicking <%= link_to "here.", jobseeker_edit_skills_path(:id => current_jobseeker.id) %>
+          </div>
+          <div style="height: 700px"></div>
+          <hr>
+          <div class = "italics">To find out more about us click here: <%= link_to "About", about_path %></div>
+          <div class = italics>To contact us: <%= link_to "Contact", contact_path %></div>
+        </div>
+      </div>
+    </div>
+  </body>
+<% elsif logged_in_employer? %>
+  <body class = "employer-body">
+    <div class="container-employer">
+      <div class="card border-0 shadow my-5 container-padding">
+        <div class="text-surround">
+          <h1>Welcome back <span class="bold"><%= Employer.find(current_employer.id).name %>!</span></h1>
+          <h2>QuikJob is your quick way to find employees!</h2>
+          <hr>
+          <div class="main-text">Post some jobs to find potential staff.
+          You can do that by clicking: <%= link_to "Post a Job", create_job_path %>
+          </div>
+          <div style="height: 700px"></div>
+          <hr>
+          <div class = "italics">To find out more about us click here: <%= link_to "About", about_path %></div>
+          <div class = italics>To contact us: <%= link_to "Contact", contact_path %></div>
+        </div>
+      </div>
+    </div>
+  </body>
+<% else %>
+  <div class="split left">
+    <div class="centered">
+      <%= link_to "Looking for Jobs?", 'jobseeker_signup', class: "btn btn-lg btn-primary signup-btn-jobseeker" %>
+      <hr>
+      <div class="surround-url">Already registered? <%= link_to "Login as Jobseeker!", login_path(:membertype => "jobseeker"), class: "signup-url" %></div>
+    </div>
+  </div>
+  <div class="split right">
+    <div class="centered">
+      <%= link_to "Looking for staff?", 'employer_signup', class: "btn btn-lg btn-primary signup-btn-employer" %>
+      <hr>
+      <div class="surround-url">Already registered? <%= link_to "Login as Employer!", login_path(:membertype => "employer"), class: "signup-url" %></div>
+    </div>
+  </div>
+<% end %>

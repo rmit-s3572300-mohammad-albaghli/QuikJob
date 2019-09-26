@@ -13,7 +13,7 @@ module SessionsHelper
         cookies.permanent[:remember_token] = jobseeker.remember_token
     end
     
-     def rememberEmployer(jobseeker)
+    def rememberEmployer(jobseeker)
         jobseeker.remember
         cookies.permanent.signed[:jobseeker_id] = jobseeker
         cookies.permanent[:remember_token] = jobseeker.remember_token

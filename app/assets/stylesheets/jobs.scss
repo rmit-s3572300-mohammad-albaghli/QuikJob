@@ -1,3 +1,24 @@
-// Place all the styles related to the Jobs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.main-text-jobs {
+  font-size: 22px;
+  text-align: left;
+}
+
+.right-button {
+  float: right;
+}
+
+.card-body-applicants {
+  padding: 30px;
+  border-style: solid;
+  border-width: 1px;
+  border-color: #e6e6e6;
+  height: 390px;
+  overflow:hidden;
+  color: black;
+  background-color: #f7f7f7;
+}
+
+.outer-container-applicants {
+  padding: 5px;
+  height: 400px;
+}
