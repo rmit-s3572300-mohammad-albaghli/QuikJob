@@ -13,6 +13,8 @@ gem 'carrierwave'
 gem 'mini_magick'
 gem 'font-awesome-rails'
 gem 'bcrypt'
+gem 'activeadmin', git: 'https://github.com/activeadmin/activeadmin'
+gem 'devise'
 
 group :development, :test do
   gem 'sqlite3', '1.3.13'
