@@ -2,6 +2,5 @@
   "name": "quikjob",
   "private": true,
   "dependencies": {
-    "easy-autocomplete": "^1.3.5"
   }
 }
