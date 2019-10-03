@@ -18,7 +18,7 @@
         <% matched_job(@job, current_jobseeker) %>
         <% if !is_applied(@job, current_jobseeker.id) %>
           <h1>This job matches you!</h1>
-          <%= link_to "Apply!", job_apply_path(:user_id => current_jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success", :method => :post %>
+          <%= link_to "Apply!", job_apply_path(:user_id => current_jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success rounded-btn", :method => :post %>
           <% else %>
           <h1>You've applied for this job!</h1>
           <% end %>
@@ -44,18 +44,18 @@
                             <% end %>
                         </ul>
                       </div>
-                      <%= link_to "Send Offer!", job_offer_path(:user_id => jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success right-button", :method => :post %>
+                      <%= link_to "Send Offer!", job_offer_path(:user_id => jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success right-button rounded-btn", :method => :post %>
                     </div>
                 </div>
             <% end %>
           </div>
           <div class="spacer"></div>
           </div>
-          <%= link_to "Find Matches!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary" %>
-          <%= link_to "Close Job", job_close_path(:job_id => @job.id), class: "btn btn-lg btn-danger right-button" , :method => :post %>
+          <%= link_to "Find Matches!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary rounded-btn" %>
+          <%= link_to "Close Job", job_close_path(:job_id => @job.id), class: "btn btn-lg btn-danger right-button rounded-btn" , :method => :post %>
         <% else %>
           <h1>This job has been closed!</h1>
-          <%= link_to "Re-open Job", job_reopen_path(:job_id => @job.id), class: "btn btn-lg btn-success" , :method => :post %>
+          <%= link_to "Re-open Job", job_reopen_path(:job_id => @job.id), class: "btn btn-lg btn-success rounded-btn" , :method => :post %>
         <% end %>
       <% end %>      
     </div>

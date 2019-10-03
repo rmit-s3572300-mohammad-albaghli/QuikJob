@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/activeadmin/activeadmin
-  revision: 5a7db303904260f14aa653cc8280b91c56f92fa6
+  revision: 1e258ef3b07b8054ad30e712bf73e87cfa09c200
   specs:
-    activeadmin (2.3.1)
+    activeadmin (2.4.0)
       arbre (~> 1.2, >= 1.2.1)
       formtastic (~> 3.1)
       formtastic_i18n (~> 0.4)
@@ -290,4 +290,4 @@ DEPENDENCIES
   web-console (= 3.5.1)
 
 BUNDLED WITH
-   2.0.2
+   1.17.2

@@ -73,7 +73,6 @@ p {
 footer {
   margin-top: 45px;
   padding-top: 5px;
-  border-top: 1px solid #eaeaea;
   color: #777;
 }
 
@@ -125,4 +124,22 @@ input {
 #session_remember_me {
   width: auto;
   margin-left: 0;
+}
+
+/* Image bodies */
+
+.jobseeker-body-grey {
+  background: image-url("desk-business-grey.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.employer-body-grey {
+  background: image-url("office-mac-grey.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
