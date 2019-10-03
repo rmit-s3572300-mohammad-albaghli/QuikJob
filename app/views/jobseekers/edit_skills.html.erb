@@ -9,7 +9,7 @@
       <%= f.label "Skills:" %>
     
       <%= f.text_field :custom_skill %> 
-      <%= f.submit "Add", class: "btn btn-primary" %>
+      <%= f.submit "Add", class: "btn btn-primary rounded-btn" %>
       <br>
 
     <% end %>
@@ -19,7 +19,7 @@
     <%= hidden_field_tag :id, @jobseeker.id %>
 
       <%= select_tag "skills", options_from_collection_for_select(Skill.all, "id", "name") %>
-      <%= f.submit "Add", class: "btn btn-primary" %>
+      <%= f.submit "Add", class: "btn btn-primary rounded-btn" %>
       <br>
       <%= f.label "Current Skills:" %> 
       <br>
@@ -35,7 +35,7 @@
     <%= form_for jobseeker_edit_skills_path do |f| %>
      <%= hidden_field_tag :id, @jobseeker.id %>
      
-     <%= f.submit "Confirm", class: "btn btn-primary" %>
+     <%= f.submit "Confirm", class: "btn btn-primary rounded-btn" %>
     <% end %>
        
   </div>

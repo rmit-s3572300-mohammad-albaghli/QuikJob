@@ -112,3 +112,28 @@ hr {
 .container-padding {
   padding: 20px 0px;
 }
+
+.team-list {
+  text-align: left;
+}
+
+.team-heading {
+  text-align: left;
+  font-weight: bold;
+}
+
+.about-body {
+  background: image-url("about-us-background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.contact-body {
+  background: image-url("notebook-background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
