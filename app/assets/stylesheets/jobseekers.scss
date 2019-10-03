@@ -1,3 +1,29 @@
 .profile-skills-container {
   font-size: 20px;
 }
+
+.jobseeker-login-container {
+  background-color: white;
+  padding: 15px 20px;
+  border-radius: 2rem;
+  width: 50%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  border-color: #bfbfbf;
+  border-width: 1px;
+  border-style: solid;
+}
+
+input {
+  border-radius: 5rem;
+  padding: 2px 8px;
+}
+
+.outer-container-login {
+  padding: 10% 0px;
+}
+
+.rounded-btn {
+  border-radius: 5rem;
+}
