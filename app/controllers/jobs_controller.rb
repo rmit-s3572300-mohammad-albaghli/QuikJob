@@ -9,16 +9,30 @@ class JobsController < ApplicationController
   end
   
   def search
-    if params[:skill_ids]
-      @name = params[:name]
-      @skills = params[:skill_ids]
-      @jobs = Array.new
-      #add jobs into list based on filter
-      Job.all.each do |job|
-        @skills.each do |skill_id|
-          skill = Skill.find(skill_id)
-          if job.skills.include?(skill) && @jobs.exclude?(job)
-            @jobs.push(job)
+    @filter = Array.new
+    if params[:form_action].eql?"add_search"
+      if params[:skill_ids]
+        params[:skill_ids].each do |skill_id|
+          @tempt_skill = Skill.find(skill_id)
+          @filter.push(@tempt_skill)
+        end
+      end 
+      @skill = Skill.find(params[:skill_id])
+      unless @filter.include?(@skill)
+        @filter.push(@skill)
+      end
+    else
+      if params[:skill_ids]
+        @skills = params[:skill_ids]
+        @jobs = Array.new
+        #add jobs into list based on filter
+        Job.all.each do |job|
+          @skills.each do |skill_id|
+            skill = Skill.find(skill_id)
+            @filter.push(skill)
+            if job.skills.include?(skill) && @jobs.exclude?(job)
+              @jobs.push(job)
+            end
           end
         end
       end
@@ -26,14 +40,28 @@ class JobsController < ApplicationController
   end
   
   def create
-    @job = current_employer.jobs.build(job_params)
-    @job.skill_ids = params[:skills]
-    @job.available = true
-    if @job.save
-      flash[:success] = "You have successfully listed a new job."
-      redirect_to current_employer
-    else
-      render 'new'
+    @filter = Array.new
+    if params[:form_action].eql? "skill_add"
+      if params[:skill_ids]
+        params[:skill_ids].each do |skill_id|
+          @tempt_skill = Skill.find(skill_id)
+          @filter.push(@tempt_skill)
+        end
+      end 
+      @skill = Skill.find(params[:skill_id])
+      unless @filter.include?(@skill)
+        @filter.push(@skill)
+      end
+    else 
+      @job = current_employer.jobs.build(job_params)
+      @job.skill_ids = params[:skills]
+      @job.available = true
+      if @job.save
+        flash[:success] = "You have successfully listed a new job."
+        redirect_to current_employer
+      else
+        render 'new'
+      end
     end
   end
 
