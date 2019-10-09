@@ -13,7 +13,11 @@
           <span class = italics>
             <span class="bold">Bio:<br></span>
             <%= @jobseeker.description %>
-            <%= @jobseeker.pdf_url().to_s %>
+            <br>
+            <% if @jobseeker.pdf_url().present? %>
+              <span class="bold">Uploaded Resume:<br></span>
+              <iframe src=<%= @jobseeker.pdf_url().to_s %> width="600" height="540" style="border: none;"> </iframe>
+            <% end %>
             <br>
           </span>
         </div>
