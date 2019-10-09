@@ -9,9 +9,21 @@
           <hr>
           <div class="main-text">To match with more jobs please add some more skills to your profile. 
             You can do that by clicking <%= link_to "here.", jobseeker_edit_skills_path(:id => current_jobseeker.id) %>
+              <div class = "homepage-card card-left">
+                <h1>Match with Jobs</h1>
+                <hr>
+                <span>Match to find jobs with the skills you have!<br><span class="italics"><%= link_to "Click here to see more!", match_jobseeker_path %></span></span>
+              </div>
+              <div class = "homepage-card card-right">
+                <h1>Search Jobs</h1>
+                <hr>
+                <span>Looking to find jobs with specific skills?<br><span class="italics"><%= link_to "Click here to see more!", search_path %></span></span>
+              </div>
+              <div style="height: 35%"></div>
           </div>
-          <div style="height: 700px"></div>
           <hr>
+          <form>
+          </form>
           <div class = "italics">To find out more about us click here: <%= link_to "About", about_path %></div>
           <div class = italics>To contact us: <%= link_to "Contact", contact_path %></div>
         </div>
@@ -26,10 +38,19 @@
           <h1>Welcome back <span class="bold"><%= Employer.find(current_employer.id).name %>!</span></h1>
           <h2>QuikJob is your quick way to find employees!</h2>
           <hr>
-          <div class="main-text">Post some jobs to find potential staff.
-          You can do that by clicking: <%= link_to "Post a Job", create_job_path %>
+          <div class="main-text">
+            <div class = "homepage-card card-left">
+              <h1>Post Job</h1>
+              <hr>
+              Post some jobs to find potential staff.<br><span class="italics"><%= link_to "Click here to post one!", create_job_path %></span>
+            </div>
+            <div class = "homepage-card card-right">
+              <h1>View Profile</h1>
+              <hr>
+              View profile to see posted jobs.<br><span class="italics"><%= link_to "Click here to view!", current_employer %></span>
+            </div>
+            <div style="height: 35%"></div>
           </div>
-          <div style="height: 700px"></div>
           <hr>
           <div class = "italics">To find out more about us click here: <%= link_to "About", about_path %></div>
           <div class = italics>To contact us: <%= link_to "Contact", contact_path %></div>
