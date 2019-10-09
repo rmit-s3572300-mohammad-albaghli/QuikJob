@@ -1,17 +1,26 @@
 <h1>Search jobs!</h1>
-<form class="footerform" action="search">
-  <h4>Skills:</h4>
-  <% Skill.all.each do |skill| %>
-  <div>
-    <%= skill.name %>
-    <% if @skills %>
-      <%= check_box_tag "skill_ids[]", skill.id, @skills.include?(skill.id) %>
-    <% else %>
-      <%= check_box_tag "skill_ids[]", skill.id %>
+<form class="footerform" action="search" >
+  <%= hidden_field_tag :form_action, "add_search" %>
+  <% if @filter %>
+    <% @filter.each do |filter| %>
+      <%= hidden_field_tag "skill_ids[]", filter.id %>
+      <li><%= filter.name %></li>
     <% end %>
-  </div>
+  <% end %>
+  <h4>Skills:</h4>
+  <%= select_tag "skill_id", options_from_collection_for_select(Skill.all, "id", "name") %>
+  <%= submit_tag "Add", class: "btn btn-sm btn-primary" %>
+
+</form>
+
+<form class = "footerform" action"search">
+  <% if @filter %>
+    <% @filter.each do |filter| %>
+      <%= hidden_field_tag "skill_ids[]", filter.id %>
+    <% end %>
   <% end %>
   <%= submit_tag "Search", class: "btn btn-sm btn-primary" %>
+  
 </form>
 <h2>Search Result:</h2>
 <% if @jobs %>
