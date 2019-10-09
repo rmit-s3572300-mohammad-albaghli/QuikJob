@@ -1,6 +1,6 @@
 <% provide(:title, "Home") %>
 <% if logged_in_jobseeker? %>
-  <body class = "jobseeker-body">
+  <body class = "jobseeker-body-grey">
     <div class="container-jobseeker">
       <div class="card border-0 shadow my-5 container-padding">
         <div class="text-surround">
@@ -19,7 +19,7 @@
     </div>
   </body>
 <% elsif logged_in_employer? %>
-  <body class = "employer-body">
+  <body class = "employer-body-grey">
     <div class="container-employer">
       <div class="card border-0 shadow my-5 container-padding">
         <div class="text-surround">
