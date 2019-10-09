@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/activeadmin/activeadmin
-  revision: 1e258ef3b07b8054ad30e712bf73e87cfa09c200
+  revision: 45ac6a00be09c64809bd29ce6b88f417bc5f0c09
   specs:
     activeadmin (2.4.0)
       arbre (~> 1.2, >= 1.2.1)
@@ -60,7 +60,7 @@ GEM
     arbre (1.2.1)
       activesupport (>= 3.0.0)
     arel (8.0.0)
-    autoprefixer-rails (9.6.1.1)
+    autoprefixer-rails (9.6.4)
       execjs
     babel-source (5.8.35)
     babel-transpiler (0.7.0)
@@ -108,7 +108,7 @@ GEM
     has_scope (0.7.2)
       actionpack (>= 4.1)
       activesupport (>= 4.1)
-    i18n (1.6.0)
+    i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.9.3)
       mini_magick (>= 4.9.5, < 5)
@@ -180,8 +180,8 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.2.0)
-      loofah (~> 2.2, >= 2.2.2)
+    rails-html-sanitizer (1.3.0)
+      loofah (~> 2.3)
     railties (5.1.6)
       actionpack (= 5.1.6)
       activesupport (= 5.1.6)
@@ -290,4 +290,4 @@ DEPENDENCIES
   web-console (= 3.5.1)
 
 BUNDLED WITH
-   1.17.2
+   1.17.3
