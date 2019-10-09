@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190925081325) do
+ActiveRecord::Schema.define(version: 20191009114205) do
 
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20190925081325) do
     t.string "password_digest"
     t.string "description"
     t.string "remember_digest"
+    t.string "pdf"
   end
 
   create_table "jobseekers_skills", id: false, force: :cascade do |t|
