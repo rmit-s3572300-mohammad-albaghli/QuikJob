@@ -6,7 +6,25 @@ class JobsController < ApplicationController
   
   def new
     @job = Job.new
+    @test = "something"
+    puts "TEST1"
+    if params[:form_action].eql?"skill_add"
+      puts "LOL"
+      @test = "yup"
+      @filter = Array.new
+      if params[:skill_ids]
+        params[:skill_ids].each do |skill_id|
+          @tempt_skill = Skill.find(skill_id)
+          @filter.push(@tempt_skill)
+        end
+      end 
+      @skill = Skill.find(params[:skill_id])
+      unless @filter.include?(@skill)
+        @filter.push(@skill)
+      end
+    end
   end
+  
   
   def search
     @filter = Array.new
@@ -40,28 +58,14 @@ class JobsController < ApplicationController
   end
   
   def create
-    @filter = Array.new
-    if params[:form_action].eql? "skill_add"
-      if params[:skill_ids]
-        params[:skill_ids].each do |skill_id|
-          @tempt_skill = Skill.find(skill_id)
-          @filter.push(@tempt_skill)
-        end
-      end 
-      @skill = Skill.find(params[:skill_id])
-      unless @filter.include?(@skill)
-        @filter.push(@skill)
-      end
-    else 
-      @job = current_employer.jobs.build(job_params)
-      @job.skill_ids = params[:skills]
-      @job.available = true
-      if @job.save
-        flash[:success] = "You have successfully listed a new job."
-        redirect_to current_employer
-      else
-        render 'new'
-      end
+    @job = current_employer.jobs.build(job_params)
+    @job.skill_ids = params[:skills]
+    @job.available = true
+    if @job.save
+      flash[:success] = "You have successfully listed a new job."
+      redirect_to current_employer
+    else
+      render 'new'
     end
   end
 

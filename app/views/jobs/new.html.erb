@@ -4,6 +4,8 @@
 
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
+    
+    
     <%= form_for(@job, url: create_job_path) do |f| %>
       <%= render 'shared/job_error_messages' %>
       <%= f.label :name %>
@@ -15,16 +17,26 @@
       <%= f.label :requirements %>
       <%= f.text_area :requirements %>
       
-      <%= f.label "Required Skills:" %>
-      <% Skill.all.each do |skill| %>
-        <%= check_box_tag "skills[]", skill.id, @job.skill_ids.include?(skill.id) %>
-        <%= skill.name %>
+      <% if @filter %>
+        <% @filter.each do |filter| %>
+          <%= hidden_field_tag "skills[]", filter.id %>
+        <% end %>
       <% end %>
-      
-      
       
       <%= f.submit "Post this job!", class: "btn btn-primary rounded-btn" %>
     <% end %>
+    
+    <form class="footerform" action="create_job" method="patch">
+      <%= hidden_field_tag :form_action, "skill_add" %>
+      <% if @filter %>
+        <% @filter.each do |filter| %>
+          <%= hidden_field_tag "skill_ids[]", filter.id %>
+          <li><%= filter.name %></li>
+        <% end %>
+      <% end %>
+      <%= select_tag "skill_id", options_from_collection_for_select(Skill.all, "id", "name") %>
+      <%= submit_tag "Add", class: "btn btn-sm btn-primary" %>
+    </form>
   </div>
 </div>  
 <% else %>
