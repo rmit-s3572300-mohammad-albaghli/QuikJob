@@ -11,6 +11,7 @@
   height: 380px;
   overflow:hidden;
   color: black;
+  border-radius: 1rem;
 }
 
 .card-body {
@@ -69,4 +70,11 @@
 
 .spacer {
   height: 10px;
+}
+
+.container-matches {
+  background-color: #e6e6e6;
+  padding: 20px 30px;
+  border-radius: 1rem;
+  min-height: 100%;
 }

@@ -35,11 +35,13 @@
 .signup-btn-jobseeker {
   background-color: #3cc3c1;
   border: none;
+  border-radius: 5rem;
 }
 
 .signup-btn-employer {
   background-color: #9966ff;
   border: none;
+  border-radius: 5rem;
 }
 
 .signup-btn-jobseeker:hover {
@@ -65,7 +67,10 @@ hr {
 .surround-url {
   padding: 8px 20px;
   background-color: #f2f2f2;
-  border-radius: 12px;
+  border-radius: 5rem;
+  border-color: #bfbfbf;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .bold{
@@ -106,4 +111,29 @@ hr {
 
 .container-padding {
   padding: 20px 0px;
+}
+
+.team-list {
+  text-align: left;
+}
+
+.team-heading {
+  text-align: left;
+  font-weight: bold;
+}
+
+.about-body {
+  background: image-url("about-us-background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+.contact-body {
+  background: image-url("notebook-background.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
 }
