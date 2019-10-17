@@ -1,30 +1,32 @@
 <% provide(:title, "Edit Profile") %>
-<h1>Edit your profile</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for @jobseeker, :html => {:multipart => true} do |f| %>
-      <%= render 'shared/jobseeker_error_messages' %>
-    
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+<body class = "jobseeker-body-grey">
+  <div class="card border-0 shadow my-5 container-padding">
+    <div class="container-edit-skills">
+      <h1>Edit your profile</h1>
+      <hr>
+      <%= form_for(@jobseeker) do |f| %>
+        <%= render 'shared/jobseeker_error_messages' %>
       
-      <%= f.label :description %>
-      <%= f.text_area :description %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+  
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+        
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+        
+        <%= f.label :pdf, "Upload PDF" %>
+        <%= f.file_field(:pdf, accept: '.pdf') %>
       
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-      
-      <%= f.label :pdf, "Upload PDF" %>
-      <%= f.file_field(:pdf, accept: '.pdf') %>
-
-      <%= f.submit "Confirm", class: "btn btn-primary rounded-btn" %>
-    <% end %>
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+  
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+        <hr>
+        <%= f.submit "Confirm", class: "btn btn-success rounded-btn" %>
+      <% end %>
+    </div>
   </div>
-</div>
+</body>

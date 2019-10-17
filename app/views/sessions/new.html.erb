@@ -1,12 +1,12 @@
 <% provide(:title, "Login") %>
 <% if !logged_in_employer? && !logged_in_jobseeker? %>
 <% if @membertype == "jobseeker" %>
-<body class = "jobseeker-body">
+<body class = "jobseeker-body-grey">
   <div class = "outer-container-login">
     <div class = "jobseeker-login-container">
       <h1>Log in as Jobseeker</h1>
 <% else %>
-<body class = "employer-body">
+<body class = "employer-body-grey">
   <div class = "outer-container-login">
     <div class = "employer-login-container">
       <h1>Log in as Employer</h1>

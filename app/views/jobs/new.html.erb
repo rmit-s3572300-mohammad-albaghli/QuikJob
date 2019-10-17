@@ -1,52 +1,52 @@
 <% provide(:title, "Post a job") %>
 <% if logged_in_employer? %>
-<h1>Post a New Job</h1>
+  <body class = "employer-body-grey">
+    <div class = "outer-container-login">
+      <div class = "employer-login-container">
+        <h1>Post a New Job</h1>
+        <hr>
+        <%= form_for(@job, url: create_job_path) do |f| %>
+          <%= render 'shared/job_error_messages' %>
+          <%= f.label :name %>
+          <%= f.text_field :name %>
+    
+          <%= f.label :info %>
+          <%= f.text_area :info %>
+          
+          <%= f.label :requirements %>
+          <%= f.text_area :requirements %>
+          
+          <% if @filter %>
+            <% @filter.each do |filter| %>
+              <%= hidden_field_tag "skills[]", filter.id %>
+            <% end %>
+          <% end %>
+          <hr>
+          <%= f.submit "Post this job!", class: "btn btn-success rounded-btn" %>
 
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    
-    
-    <%= form_for(@job, url: create_job_path) do |f| %>
-      <%= render 'shared/job_error_messages' %>
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-
-      <%= f.label :info %>
-      <%= f.text_area :info %>
-      
-      <%= f.label :requirements %>
-      <%= f.text_area :requirements %>
-      
-      <% if @filter %>
-        <% @filter.each do |filter| %>
-          <%= hidden_field_tag "skills[]", filter.id %>
+          <form class="footerform" action="create_job" method="patch">
+            <%= hidden_field_tag :form_action, "skill_add" %>
+            <% if @filter %>
+              <% @filter.each do |filter| %>
+                <%= hidden_field_tag "skill_ids[]", filter.id %>
+                <li><%= filter.name %></li>
+              <% end %>
+            <% end %>
+            <%= select_tag "skill_id", options_from_collection_for_select(Skill.all, "id", "name") %>
+            <%= submit_tag "Add", class: "btn btn-sm btn-primary" %>
+          </form>
         <% end %>
-      <% end %>
-      
-      <%= f.submit "Post this job!", class: "btn btn-primary rounded-btn" %>
-    <% end %>
-    
-    <form class="footerform" action="create_job" method="patch">
-      <%= hidden_field_tag :form_action, "skill_add" %>
-      <% if @filter %>
-        <% @filter.each do |filter| %>
-          <%= hidden_field_tag "skill_ids[]", filter.id %>
-          <li><%= filter.name %></li>
-        <% end %>
-      <% end %>
-      <%= select_tag "skill_id", options_from_collection_for_select(Skill.all, "id", "name") %>
-      <%= submit_tag "Add", class: "btn btn-sm btn-primary" %>
-    </form>
-  </div>
-</div>  
+      </div>
+    </div>
+  </body>
 <% else %>
-<div class="center jumbotron">
-  <h1>You are not logged in!</h1>
-  <h2>
-      You are not logged in as an employer. Please log in below or return to the home page. 
-  </h2>
-    <%= link_to "Login as Employer", login_path(:membertype => "employer"), class: "btn btn-md btn-success signup-button" %>
-    <%= link_to "Go To Homepage", root_path, class: "btn btn-md btn-primary signup-button" %>
+  <div class="center jumbotron">
+    <h1>You are not logged in!</h1>
+    <h2>
+        You are not logged in as an employer. Please log in below or return to the home page. 
+    </h2>
+      <%= link_to "Login as Employer", login_path(:membertype => "employer"), class: "btn btn-md btn-success signup-button" %>
+      <%= link_to "Go To Homepage", root_path, class: "btn btn-md btn-primary signup-button" %>
+    </div>
   </div>
-</div>
 <% end %> 

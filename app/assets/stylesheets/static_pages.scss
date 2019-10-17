@@ -123,7 +123,7 @@ hr {
 }
 
 .about-body {
-  background: image-url("about-us-background.jpg") no-repeat center center fixed;
+  background: image-url("about-us-background-blur.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -131,9 +131,42 @@ hr {
 }
 
 .contact-body {
-  background: image-url("notebook-background.jpg") no-repeat center center fixed;
+  background: image-url("notebook-background-blur.jpg") no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
   -o-background-size: cover;
+}
+
+.homepage-card {
+  width: 47%;
+  padding: 2% 1%;
+  border-radius: 1rem;
+  border-color: #337ab7;
+  border-width: 2px;
+  border-style: solid;
+  margin: 40px 0px 40px 0px;
+  background-color: #3884c7;
+  color: white;
+  height: 25%;
+}
+
+.homepage-card a{
+  text-decoration: none;
+  color: black;
+}
+
+.homepage-card a:hover{
+  text-decoration: none;
+  color: white;
+}
+
+.card-right {
+  display: block;
+  float: right;
+}
+
+.card-left {
+  display: block;
+  float: left;
 }

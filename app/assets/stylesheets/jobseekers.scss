@@ -21,7 +21,7 @@ input {
 }
 
 .outer-container-login {
-  padding: 10% 0px;
+  padding: 5% 0px;
 }
 
 .rounded-btn {
@@ -35,8 +35,23 @@ input {
   width:60%;
   margin-left: auto;
   margin-right: auto;
+  border-color: #bfbfbf;
+  border-width: 1px;
+  border-style: solid;
 }
 
 .main-text-size {
   font-size: 22px;
+}
+
+.filter-left {
+  width: 50%;
+  float: left;
+  display: block;
+}
+
+.filter-right {
+  width: 50%;
+  float: right;
+  display: block;
 }

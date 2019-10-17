@@ -1,31 +1,58 @@
-<h1>Search jobs!</h1>
-<form class="footerform" action="search" >
-  <%= hidden_field_tag :form_action, "add_search" %>
-  <% if @filter %>
-    <% @filter.each do |filter| %>
-      <%= hidden_field_tag "skill_ids[]", filter.id %>
-      <li><%= filter.name %></li>
-    <% end %>
+<% provide(:title, "Search Jobs") %>
+<body class = "jobseeker-body-grey">
+  <div class="card border-0 shadow my-5 container-padding">
+    <div class="container-edit-skills">
+      <h1>Search jobs!</h1>
+      <hr>
+      <form class="footerform" action="search" >
+        <%= hidden_field_tag :form_action, "add_search" %>
+        <% if @filter %>
+        <div class = "bold main-text-size">Filter by:</div>
+          <% @filter.each do |filter| %>
+            <%= hidden_field_tag "skill_ids[]", filter.id %>
+            <li><%= filter.name %></li>
+          <% end %>
+          <hr>
+        <% end %>
+        <h4>Skills:</h4>
+        <%= select_tag "skill_id", options_from_collection_for_select(Skill.all, "id", "name") %>
+        <%= submit_tag "Add", class: "btn btn-sm btn-primary rounded-btn" %>
+      </form>
+      <form class = "footerform" action"search">
+        <% if @filter %>
+          <% @filter.each do |filter| %>
+            <%= hidden_field_tag "skill_ids[]", filter.id %>
+          <% end %>
+        <% end %>
+        <hr>
+        <%= submit_tag "Search", class: "btn btn-sm btn-success rounded-btn" %>
+      </form>
+    </div>
+  </div>
+  <% if @jobs %>
+    <div class="card border-0 shadow my-5 container-padding">
+      <div class="container-matches">
+        <h1>Search result (<%= @jobs.count %>):</h1>
+        <hr>
+        <div class = "row">
+          <% @jobs.each do |job| %>
+              <%= link_to job do %>
+              <div class="col-lg-4 col-sm-6 mb-4 outer-container">
+                  <div class="card-body-jobs">
+                    <div class="card-title">
+                      <%= job.name%>
+                    </div>
+                    <hr class = "card-line">
+                    <div class="card-text"><%= job.info %></div>
+                    <div class = "card-poster italics">
+                        <span class="bold">Posted by: </span><%= job.employer.name %>
+                    </div>
+                  </div>
+              </div>
+              <% end %>
+          <% end %>
+        </div>
+      </div>
+    </div>
   <% end %>
-  <h4>Skills:</h4>
-  <%= select_tag "skill_id", options_from_collection_for_select(Skill.all, "id", "name") %>
-  <%= submit_tag "Add", class: "btn btn-sm btn-primary" %>
-
-</form>
-
-<form class = "footerform" action"search">
-  <% if @filter %>
-    <% @filter.each do |filter| %>
-      <%= hidden_field_tag "skill_ids[]", filter.id %>
-    <% end %>
-  <% end %>
-  <%= submit_tag "Search", class: "btn btn-sm btn-primary" %>
-  
-</form>
-<h2>Search Result:</h2>
-<% if @jobs %>
-  <% @jobs.each do |job| %>
-    <%= link_to job.name, job %>
-    <br>
-  <% end %>
-<% end %>
+</body>
