@@ -6,11 +6,29 @@ class JobsController < ApplicationController
   
   def new
     @job = Job.new
+    @test = "something"
+    puts "TEST1"
+    if params[:form_action].eql?"skill_add"
+      puts "LOL"
+      @test = "yup"
+      @filter = Array.new
+      if params[:skill_ids]
+        params[:skill_ids].each do |skill_id|
+          @tempt_skill = Skill.find(skill_id)
+          @filter.push(@tempt_skill)
+        end
+      end 
+      @skill = Skill.find(params[:skill_id])
+      unless @filter.include?(@skill)
+        @filter.push(@skill)
+      end
+    end
   end
   
+  
   def search
+    @filter = Array.new
     if params[:form_action].eql?"add_search"
-      @filter = Array.new
       if params[:skill_ids]
         params[:skill_ids].each do |skill_id|
           @tempt_skill = Skill.find(skill_id)
@@ -23,17 +41,13 @@ class JobsController < ApplicationController
       end
     else
       if params[:skill_ids]
-        @filter = Array.new
         @skills = params[:skill_ids]
         @jobs = Array.new
         #add jobs into list based on filter
- 
         Job.all.each do |job|
           @skills.each do |skill_id|
             skill = Skill.find(skill_id)
-            if @filter.exclude?(skill)
-              @filter.push(skill)
-            end
+            @filter.push(skill)
             if job.skills.include?(skill) && @jobs.exclude?(job)
               @jobs.push(job)
             end
@@ -44,28 +58,14 @@ class JobsController < ApplicationController
   end
   
   def create
-    @filter = Array.new
-    if params[:form_action].eql? "skill_add"
-      if params[:skill_ids]
-        params[:skill_ids].each do |skill_id|
-          @tempt_skill = Skill.find(skill_id)
-          @filter.push(@tempt_skill)
-        end
-      end 
-      @skill = Skill.find(params[:skill_id])
-      unless @filter.include?(@skill)
-        @filter.push(@skill)
-      end
-    else 
-      @job = current_employer.jobs.build(job_params)
-      @job.skill_ids = params[:skills]
-      @job.available = true
-      if @job.save
-        flash[:success] = "You have successfully listed a new job."
-        redirect_to current_employer
-      else
-        render 'new'
-      end
+    @job = current_employer.jobs.build(job_params)
+    @job.skill_ids = params[:skills]
+    @job.available = true
+    if @job.save
+      flash[:success] = "You have successfully listed a new job."
+      redirect_to current_employer
+    else
+      render 'new'
     end
   end
 
@@ -82,6 +82,18 @@ class JobsController < ApplicationController
       @job.jobseeker_ids = @job_jobseekers
       AppMailer.jobseeker_applied(@job.employer.name, @job.name, @job.employer.email, @jobseeker).deliver
       @job.save
+      redirect_to @job
+    else
+    	redirect_to :controller => 'errors', :action => 'not_found'
+    end
+  end
+  
+  def withdraw
+    @job = Job.find(params[:job_id])
+    @jobseeker = Jobseeker.find(params[:user_id])
+    if (matched_job(@job, @jobseeker))
+      @job = Job.find(params[:job_id])
+      @job.jobseekers.delete(@jobseeker)
       redirect_to @job
     else
     	redirect_to :controller => 'errors', :action => 'not_found'

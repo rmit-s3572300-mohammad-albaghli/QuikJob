@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   #Routes for employer model
   get  '/employer_signup',  to: 'employers#new'
   post '/employer_signup',  to: 'employers#create'
-
   #Routes for jobseeker model
   get '/jobseeker_signup', to: 'jobseekers#new'
   post '/jobseeker_signup', to: 'jobseekers#create'
@@ -23,6 +22,7 @@ Rails.application.routes.draw do
   post '/jobseeker_edit_skills', to: 'jobseekers#confirm_skills'
   patch '/jobseeker_add_skills', to: 'jobseekers#add_skills'
   post '/jobseeker_skill_delete', to: 'jobseekers#delete_skills'
+
   
   #login routes
   get '/login', to: 'sessions#new'
@@ -31,8 +31,10 @@ Rails.application.routes.draw do
   
   # Routes for job pages
   get '/create_job', to: 'jobs#new'
+  patch '/create_job', to: 'jobs#new'
   post '/create_job', to: 'jobs#create'
   post '/job_apply', to: 'jobs#apply'
+  post '/job_withdraw', to: 'jobs#withdraw'
   get '/search', to: 'jobs#search'
   post '/search', to: 'jobs#search'
   post '/job_offer', to: 'jobs#offer'

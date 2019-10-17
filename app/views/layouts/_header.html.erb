@@ -14,6 +14,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= link_to "Profile", current_employer %></li>
+                  <li><%= link_to "Edit Profile", edit_employer_path(current_employer.id) %></li>
                   <li class="divider"></li>
                   <li>
                     <%= link_to "Log out", logout_path, method: :delete %>

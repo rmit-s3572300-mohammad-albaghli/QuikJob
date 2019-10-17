@@ -13,6 +13,16 @@
         <ul>
           <% @job.skills.each do |skill| %>
               <li><%= skill.name %></li>
+        <% end %>
+      </ul>
+      <% if current_jobseeker %>
+        <% matched_job(@job, current_jobseeker) %>
+        <% if !is_applied(@job, current_jobseeker.id) %>
+          <h1>This job matches you!</h1>
+          <%= link_to "Apply!", job_apply_path(:user_id => current_jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-success rounded-btn", :method => :post %>
+          <% else %>
+          <h1>You've applied for this job!</h1>
+          <%= link_to "Withdraw Application", job_withdraw_path(:user_id => current_jobseeker.id, :job_id => @job.id), class: "btn btn-lg btn-danger rounded-btn", :method => :post %>
           <% end %>
         </ul>
         <hr>

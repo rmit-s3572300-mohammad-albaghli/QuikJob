@@ -18,6 +18,23 @@ class EmployersController < ApplicationController
     end
   end
   
+  def edit
+    @employer = Employer.find(params[:id])
+    if(current_employer != @employer)
+      redirect_to :controller => 'errors', :action => 'not_found'
+    end
+  end
+  
+  def update
+    @employer = Employer.find(params[:id])
+    if @employer.update_attributes(employer_params)
+      flash[:success] = "Successfully updated your profile!"
+      redirect_to @employer
+    else
+      render 'edit'
+    end
+  end
+  
   private
   
   def employer_params

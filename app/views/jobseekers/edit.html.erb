@@ -16,6 +16,9 @@
         <%= f.label :description %>
         <%= f.text_area :description %>
         
+        <%= f.label :pdf, "Upload PDF" %>
+        <%= f.file_field(:pdf, accept: '.pdf') %>
+      
         <%= f.label :password %>
         <%= f.password_field :password %>
   
