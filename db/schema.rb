@@ -77,9 +77,9 @@ ActiveRecord::Schema.define(version: 20191009114205) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"
-    t.string "description"
     t.string "remember_digest"
     t.string "pdf"
+    t.string "description"
   end
 
   create_table "jobseekers_skills", id: false, force: :cascade do |t|

@@ -9,8 +9,8 @@ class JobsController < ApplicationController
   end
   
   def search
+    @filter = Array.new
     if params[:form_action].eql?"add_search"
-      @filter = Array.new
       if params[:skill_ids]
         params[:skill_ids].each do |skill_id|
           @tempt_skill = Skill.find(skill_id)
@@ -23,17 +23,13 @@ class JobsController < ApplicationController
       end
     else
       if params[:skill_ids]
-        @filter = Array.new
         @skills = params[:skill_ids]
         @jobs = Array.new
         #add jobs into list based on filter
- 
         Job.all.each do |job|
           @skills.each do |skill_id|
             skill = Skill.find(skill_id)
-            if @filter.exclude?(skill)
-              @filter.push(skill)
-            end
+            @filter.push(skill)
             if job.skills.include?(skill) && @jobs.exclude?(job)
               @jobs.push(job)
             end
