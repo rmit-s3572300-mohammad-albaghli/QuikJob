@@ -27,8 +27,8 @@ class JobsController < ApplicationController
   
   
   def search
+    @filter = Array.new
     if params[:form_action].eql?"add_search"
-      @filter = Array.new
       if params[:skill_ids]
         params[:skill_ids].each do |skill_id|
           @tempt_skill = Skill.find(skill_id)
@@ -41,17 +41,13 @@ class JobsController < ApplicationController
       end
     else
       if params[:skill_ids]
-        @filter = Array.new
         @skills = params[:skill_ids]
         @jobs = Array.new
         #add jobs into list based on filter
- 
         Job.all.each do |job|
           @skills.each do |skill_id|
             skill = Skill.find(skill_id)
-            if @filter.exclude?(skill)
-              @filter.push(skill)
-            end
+            @filter.push(skill)
             if job.skills.include?(skill) && @jobs.exclude?(job)
               @jobs.push(job)
             end
@@ -86,6 +82,18 @@ class JobsController < ApplicationController
       @job.jobseeker_ids = @job_jobseekers
       AppMailer.jobseeker_applied(@job.employer.name, @job.name, @job.employer.email, @jobseeker).deliver
       @job.save
+      redirect_to @job
+    else
+    	redirect_to :controller => 'errors', :action => 'not_found'
+    end
+  end
+  
+  def withdraw
+    @job = Job.find(params[:job_id])
+    @jobseeker = Jobseeker.find(params[:user_id])
+    if (matched_job(@job, @jobseeker))
+      @job = Job.find(params[:job_id])
+      @job.jobseekers.delete(@jobseeker)
       redirect_to @job
     else
     	redirect_to :controller => 'errors', :action => 'not_found'
