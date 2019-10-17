@@ -1,7 +1,8 @@
 class Jobseeker < ApplicationRecord
-  attr_accessor :remember_token, :custom_skill
+  attr_accessor :remember_token, :custom_skill, :pdf
   has_and_belongs_to_many :skills
   has_and_belongs_to_many :jobs
+  mount_uploader :pdf, PdfUploader
   #Validations
   before_save { self.email = email.downcase }
   validates :name, presence: true, length: { minimum: 4, maximum: 60 }

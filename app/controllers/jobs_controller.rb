@@ -84,6 +84,18 @@ class JobsController < ApplicationController
     end
   end
   
+  def withdraw
+    @job = Job.find(params[:job_id])
+    @jobseeker = Jobseeker.find(params[:user_id])
+    if (matched_job(@job, @jobseeker))
+      @job = Job.find(params[:job_id])
+      @job.jobseekers.delete(@jobseeker)
+      redirect_to @job
+    else
+    	redirect_to :controller => 'errors', :action => 'not_found'
+    end
+  end
+  
   def offer
     @job = Job.find(params[:job_id])
     @jobseeker = Jobseeker.find(params[:user_id])

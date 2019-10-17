@@ -14,6 +14,11 @@
             <span class="bold">Bio:<br></span>
             <%= @jobseeker.description %>
             <br>
+            <% if @jobseeker.pdf_url().present? %>
+              <span class="bold">Uploaded Resume:<br></span>
+              <iframe src=<%= @jobseeker.pdf_url().to_s %> width="600" height="540" style="border: none;"> </iframe>
+            <% end %>
+            <br>
           </span>
         </div>
         <div class="profile-skills-container">

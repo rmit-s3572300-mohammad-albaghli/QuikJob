@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   get '/create_job', to: 'jobs#new'
   post '/create_job', to: 'jobs#create'
   post '/job_apply', to: 'jobs#apply'
+  post '/job_withdraw', to: 'jobs#withdraw'
   get '/search', to: 'jobs#search'
   post '/search', to: 'jobs#search'
   post '/job_offer', to: 'jobs#offer'
