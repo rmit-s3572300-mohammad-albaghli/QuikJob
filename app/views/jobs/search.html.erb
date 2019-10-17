@@ -7,7 +7,7 @@
       <form class="footerform" action="search" >
         <%= hidden_field_tag :form_action, "add_search" %>
         <% if @filter %>
-        <div class = "bold main-text-size">Filter by:</div>
+          <div class = "bold main-text-size">Filter by:</div>
           <% @filter.each do |filter| %>
             <%= hidden_field_tag "skill_ids[]", filter.id %>
             <li><%= filter.name %></li>
