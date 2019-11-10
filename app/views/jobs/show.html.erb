@@ -54,8 +54,9 @@
               </div>
               <div class="spacer"></div>
             </div>
-            <%= link_to "Find Matches!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary rounded-btn" %>
-            <%= link_to "Close Job", job_close_path(:job_id => @job.id), class: "btn btn-lg btn-danger right-button rounded-btn" , :method => :post %>
+              <%= link_to "Find Matches!", match_employer_path(:job_id => @job.id), class: "btn btn-lg btn-primary rounded-btn" %>
+              <%= link_to "Delete Job", job_destroy_path(:job_id => @job.id), class: "btn btn-lg btn-danger right-button rounded-btn", :method => :post, data: {confirm: "Are you sure you want to remove this job?"} %>
+              <%= link_to "Close Job", job_close_path(:job_id => @job.id), class: "btn btn-lg btn-info right-button rounded-btn" , :method => :post %>
           <% else %>
             <h1>This job has been closed!</h1>
             <%= link_to "Re-open Job", job_reopen_path(:job_id => @job.id), class: "btn btn-lg btn-success rounded-btn" , :method => :post %>

@@ -73,6 +73,9 @@ class JobsController < ApplicationController
   end
 
   def destroy
+    @job = Job.find(params[:job_id])
+    @job.destroy
+    redirect_to root_url
   end
 
   def apply
