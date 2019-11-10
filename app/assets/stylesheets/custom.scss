@@ -143,3 +143,36 @@ input {
   background-size: cover;
   -o-background-size: cover;
 }
+
+.word-break-style {
+  word-break: break-all;
+}
+
+.mobile {
+  display: none;
+}
+
+/* MOBILE CSS */
+@media only screen and (max-width: 600px) {
+
+ .mobile {
+   display:block;
+ }
+ 
+ .desktop {
+   display:none;
+ }
+ 
+ .padding-right {
+   margin: 10px;
+ }
+ 
+ .mobile-text-big {
+   font-size: 20px;
+ }
+ 
+ .mobile-container {
+   width: 100% !important;
+ }
+ 
+}
