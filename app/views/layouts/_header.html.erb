@@ -1,64 +1,102 @@
 <header class="navbar navbar-fixed-top navbar-inverse">
-    
-      <div class="container">
-          
-        <%= link_to "QuikJob", root_path, id: "logo" %>
-        <nav>
-          <ul class="nav navbar-nav navbar-right">
-            <li><%= link_to "Home",   root_path %></li>
-            <% if logged_in_employer? %>
-              <li><%= link_to "Post a Job", create_job_path %></li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                 <%= current_employer.name %> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", current_employer %></li>
-                  <li><%= link_to "Edit Profile", edit_employer_path(current_employer.id) %></li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Log out", logout_path, method: :delete %>
-                  </li>
-                </ul>
-              </li>
-            <% end %> 
-            <% if logged_in_jobseeker? %>
+  <div class = "desktop">
+    <div class="container">
+    <%= link_to "QuikJob", root_path, id: "logo" %>
+    <nav>
+      <ul class="nav navbar-nav navbar-right">
+        <li><%= link_to "Home",   root_path %></li>
+        <% if logged_in_employer? %>
+          <li><%= link_to "Post a Job", create_job_path %></li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+             <%= current_employer.name %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_employer %></li>
+              <li><%= link_to "Edit Profile", edit_employer_path(current_employer.id) %></li>
+              <li class="divider"></li>
               <li>
-                <%= link_to "Matched Jobs", match_jobseeker_path %>
+                <%= link_to "Log out", logout_path, method: :delete %>
               </li>
-              <li>
-                <%= link_to "Search Jobs", search_path %>
-              </li>
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                 <%= current_jobseeker.name %> <b class="caret"></b>
-                </a>
-                <ul class="dropdown-menu">
-                  <li><%= link_to "Profile", current_jobseeker %></li>
-                  <li><%= link_to "Edit Profile", edit_jobseeker_path(current_jobseeker.id) %></li>
-                   <li>
-                     <%= link_to "Edit Skills", jobseeker_edit_skills_path(:id => current_jobseeker.id) %>
-                   </li>
-                  <li class="divider"></li>
-                  <li>
-                    <%= link_to "Log out", logout_path, method: :delete %>
-                  </li>
-                </ul>
-              </li>
-            <% end %> 
-            <% if logged_in_employer? || logged_in_jobseeker? %>
-            <% else %>
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-               Login
-              </a>
-              <ul class="dropdown-menu">
-                <li><%= link_to "Job Seeker", login_path(:membertype => "jobseeker")%></li>
-                <li><%= link_to "Employer", login_path(:membertype => "employer")%></li>
-              </ul>
+            </ul>
           </li>
-          <% end %> 
+        <% end %> 
+        <% if logged_in_jobseeker? %>
+          <li>
+            <%= link_to "Matched Jobs", match_jobseeker_path %>
+          </li>
+          <li>
+            <%= link_to "Search Jobs", search_path %>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+             <%= current_jobseeker.name %> <b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu">
+              <li><%= link_to "Profile", current_jobseeker %></li>
+              <li><%= link_to "Edit Profile", edit_jobseeker_path(current_jobseeker.id) %></li>
+               <li>
+                 <%= link_to "Edit Skills", jobseeker_edit_skills_path(:id => current_jobseeker.id) %>
+               </li>
+              <li class="divider"></li>
+              <li>
+                <%= link_to "Log out", logout_path, method: :delete %>
+              </li>
+            </ul>
+          </li>
+        <% end %> 
+        <% if logged_in_employer? || logged_in_jobseeker? %>
+        <% else %>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+           Login
+          </a>
+          <ul class="dropdown-menu">
+            <li><%= link_to "Job Seeker", login_path(:membertype => "jobseeker")%></li>
+            <li><%= link_to "Employer", login_path(:membertype => "employer")%></li>
           </ul>
-        </nav>
-      </div>
+      </li>
+      <% end %> 
+      </ul>
+    </nav>
+  </div>
+  </div>
+  <div class = "mobile">
+    <ul class="nav navbar-nav navbar-right ml-auto">
+      <li class = "padding-right"><%= link_to "QuikJob", root_path, id: "logo" %></li>
+      <li class="dropdown li-right">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class = "bold mobile-text-big">Menu</span>
+        </a>
+        <ul class="dropdown-menu">
+          <li><%= link_to "Home",   root_path %></li>
+          <% if logged_in_employer? %>
+            <li><%= link_to "Post a Job", create_job_path %></li>
+            <li><%= link_to "Profile", current_employer %></li>
+            <li><%= link_to "Edit Profile", edit_employer_path(current_employer.id) %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          <% end %>
+          <% if logged_in_jobseeker? %>
+            <li><%= link_to "Matched Jobs", match_jobseeker_path %></li>
+            <li><%= link_to "Search Jobs", search_path %></li>
+            <li><%= link_to "Profile", current_jobseeker %></li>
+            <li><%= link_to "Edit Profile", edit_jobseeker_path(current_jobseeker.id) %></li>
+            <li><%= link_to "Edit Skills", jobseeker_edit_skills_path(:id => current_jobseeker.id) %></li>
+            <li class="divider"></li>
+            <li><%= link_to "Log out", logout_path, method: :delete %></li>
+          <% end %> 
+          <% if logged_in_employer? || logged_in_jobseeker? %>
+          <% else %>
+            <li class="divider"></li>
+            <li><%= link_to "Register As Job Seeker", 'jobseeker_signup'%></li>
+            <li><%= link_to "Register As Employer", 'employer_signup'%></li>
+            <li class="divider"></li>
+            <li><%= link_to "Job Seeker Login", login_path(:membertype => "jobseeker")%></li>
+            <li><%= link_to "Employer Login", login_path(:membertype => "employer")%></li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </header>
