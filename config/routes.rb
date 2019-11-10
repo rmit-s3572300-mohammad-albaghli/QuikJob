@@ -32,6 +32,7 @@ Rails.application.routes.draw do
   # Routes for job pages
   get '/create_job', to: 'jobs#new'
   patch '/create_job', to: 'jobs#new'
+  post '/job_destroy', to: 'jobs#destroy'
   post '/create_job', to: 'jobs#create'
   post '/job_apply', to: 'jobs#apply'
   post '/job_withdraw', to: 'jobs#withdraw'
