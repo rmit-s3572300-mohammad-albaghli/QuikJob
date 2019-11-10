@@ -1,27 +1,29 @@
 <% provide(:title, "Edit Profile") %>
-<h1>Edit your profile</h1>
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-    <%= form_for(@employer) do |f| %>
-      <%= render 'shared/employer_error_messages' %>
-    
-      <%= f.label :name %>
-      <%= f.text_field :name %>
-
-      <%= f.label :email %>
-      <%= f.email_field :email %>
+<body class = "employer-body-grey">
+  <div class="card border-0 shadow my-5 container-padding">
+    <div class="container-edit-skills mobile-container">
+      <h1>Edit your profile</h1>
+      <hr>
+      <%= form_for(@employer) do |f| %>
+        <%= render 'shared/employer_error_messages' %>
       
-      <%= f.label :info %>
-      <%= f.text_area :info %>
-      
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-
-      <%= f.label :password_confirmation, "Confirmation" %>
-      <%= f.password_field :password_confirmation %>
-
-      <%= f.submit "Confirm", class: "btn btn-primary rounded-btn" %>
-    <% end %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+  
+        <%= f.label :email %>
+        <%= f.email_field :email %>
+        
+        <%= f.label :info %>
+        <%= f.text_area :info %>
+        
+        <%= f.label :password %>
+        <%= f.password_field :password %>
+  
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation %>
+  
+        <%= f.submit "Confirm", class: "btn btn-primary rounded-btn" %>
+      <% end %>
+    </div>
   </div>
-</div>
+</body>

@@ -3,7 +3,7 @@
   <div class="container-jobseeker">
     <div class="card border-0 shadow my-5 container-padding">
       <div class="text-surround">
-        <h1><span class="bold">
+        <h1 class = "word-break-style"><span class="bold">
           Name: <%= @jobseeker.name %></span>
           <br>
           Email: <%= @jobseeker.email %>
@@ -16,7 +16,12 @@
             <br>
             <% if @jobseeker.pdf_url().present? %>
               <span class="bold">Uploaded Resume:<br></span>
-              <iframe src=<%= @jobseeker.pdf_url().to_s %> width="600" height="540" style="border: none;"> </iframe>
+              <div class = desktop>
+                <iframe src=<%= @jobseeker.pdf_url().to_s %> width="600" height="540" style="border: none;"></iframe>
+              </div>
+              <div class="mobile">
+                <iframe src=<%= @jobseeker.pdf_url().to_s %>></iframe>
+              </div>
             <% end %>
             <br>
           </span>

@@ -144,6 +144,10 @@ input {
   -o-background-size: cover;
 }
 
+.word-break-style {
+  word-break: break-all;
+}
+
 .mobile {
   display: none;
 }
@@ -166,4 +170,9 @@ input {
  .mobile-text-big {
    font-size: 20px;
  }
+ 
+ .mobile-container {
+   width: 100% !important;
+ }
+ 
 }
